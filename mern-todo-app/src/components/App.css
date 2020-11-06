@@ -1,0 +1,78 @@
+.signup-container {
+    background-image: url(./images/sbg.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    opacity: 1;
+}
+
+.input-group {
+    margin: 10px 0;
+}
+
+.login-container {
+    background-image: url(./images/lbg.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    opacity: 1;
+}
+
+#overlay {
+    background-color: #362638;
+}
+
+#height {
+    height: 80vh;
+}
+
+#home-bg {
+    background-image: url(./images/hbg.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    opacity: 1;
+    height: 80vh;
+
+    /* background-color: #362638; */
+}
+
+/* Checkout Steps */
+
+.checkout-steps {
+    display: flex;
+    justify-content: space-between;
+    width: 40rem;
+    margin: 1rem auto;
+    background-color: white;
+    padding: 15px;
+    margin: 15px;
+}
+
+.checkout-steps>div {
+    border-top: .3rem #c0c0c0 solid;
+    color: #c0c0c0;
+    flex: 1 1;
+}
+
+.checkout-steps>div.active {
+    border-top: .3rem #f08000 solid;
+    color: #f08000;
+}
+
+footer {
+    padding: 50px 0;
+}
+
+footer ul {
+    list-style: none;
+    margin-bottom: 10px;
+}
+
+footer ul > li {
+    margin-bottom: 10px;
+}
+
+#footer a {
+    text-decoration: none;
+}

@@ -1,0 +1,30 @@
+
+@font-face {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 400;
+    src: url('./fonts/roboto/Roboto-Light.ttf');
+}
+
+#root {
+    font-family: Roboto;
+}
+
+a {
+    color: rgba(233, 217, 68, 0.795);
+    text-decoration: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.nc {
+    color: rgba(233, 217, 68, 0.795);
+}
+
+.yc {
+    color: rgba(233, 217, 68, 0.795);
+}
