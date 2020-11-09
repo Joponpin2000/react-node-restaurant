@@ -1,12 +1,8 @@
 const request = require('request');
 const Payment = require('../models/Payment');
+require('dotenv').config()
 
-const dotenv = require('dotenv');
-const config = require('../config/config');
-
-dotenv.config();
-
-const secretKey = config.SECRET_KEY;
+const secretKey = process.env.SECRET_KEY;
 
 exports.pay = async (req, res) => {
 

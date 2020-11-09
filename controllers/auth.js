@@ -1,13 +1,10 @@
 const User = require('../models/User');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-const dotenv = require('dotenv');
-const config = require('../config/config');
+require('dotenv').config()
 
-dotenv.config();
-
-const jwtSecret = config.JWT_SECRET;
-const jwtExpire = config.JWT_EXPIRE;
+const jwtSecret = process.env.JWT_SECRET;
+const jwtExpire = process.env.JWT_EXPIRE;
 
 exports.signupController = async (req, res) => {
     const { username, email, password } = req.body;

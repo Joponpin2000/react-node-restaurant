@@ -1,4 +1,5 @@
 const express = require('express');
+const path = require('path');
 const app = express();
 const cors = require('cors');
 const cookieParser = require('cookie-parser');
@@ -17,22 +18,21 @@ app.use(bodyParser.urlencoded({
     extended: true,
 })
 );
-
-app.use(cors({
-    origin: [
-        `http://localhost:3000`,
-    ],
-    credentials: true
-})
-);
-
+// app.use(cors({
+//     origin: [
+//         `http://localhost:3000`,
+//     ],
+//     credentials: true
+// })
+// );
+app.use(cors());
 app.use(express.json());
 app.use(cookieParser());
 
-// app.use(express.static(path.join(__dirname, '../build')));
-// app.get('*', (req, res) => {
-//     res.sendFile(path.join(__dirname, '../build'));
-// });
+app.use(express.static(path.join(__dirname, '../build')));
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, '../build'));
+});
 
 app.use('/api/auth', authRoutes);
 app.use('/api/category', categoryRoutes);
