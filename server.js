@@ -29,17 +29,18 @@ app.use(cors());
 app.use(express.json());
 app.use(cookieParser());
 
-app.use(express.static(path.join(__dirname, './mern-todo-app/build')));
-app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, './mern-todo-app/build'));
-});
-
 app.use('/api/auth', authRoutes);
 app.use('/api/category', categoryRoutes);
 app.use('/api/product', productRoutes);
 app.use('/api/products', AllProductsRoutes);
 app.use(express.static('uploads'));
 app.use('/api/paystack', paymentRoutes);
+
+app.use(express.static(path.join(__dirname, './mern-todo-app/build')));
+
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, './mern-todo-app/build'));
+});
 
 app.get('/payment-success/:id', paymentController.receipt);
 
