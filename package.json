@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node server.js",
-    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install npm && run build",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix mern-todo-app && npm run build --prefix mern-todo-app",
     "start-server": "nodemon server.js",
     "start-client": "npm start --prefix mern-todo-app"
   },
