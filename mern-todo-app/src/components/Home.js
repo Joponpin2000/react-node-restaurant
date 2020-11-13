@@ -14,9 +14,6 @@ const Home = (props) => {
 
         dispatch(listProducts())
 
-        return () => {
-            //
-        }
     }, [dispatch])
 
     const getSecondPart = (str) => {
@@ -84,5 +81,4 @@ const Home = (props) => {
     );
 };
 
-// export default connect(null, { addBasket })(Home);
 export default Home;

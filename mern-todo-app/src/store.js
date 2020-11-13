@@ -1,4 +1,3 @@
-// import composeWithDevTools from 'redux-devtools-extension';
 import thunk from 'redux-thunk';
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import { productDeleteReducer, productDetailsReducer, productListReducer, productSaveReducer } from './reducers/productReducers';
@@ -9,7 +8,6 @@ import { getLocalStorage } from './helpers/localStorage';
 import { categoryListReducer, categorySaveReducer } from './reducers/categoryReducers';
 import { paymentReducer } from './reducers/paymentReducer';
 
-// const middleware = [thunk];
 
 const cartItems = getCookie("cartItems") || [];
 const userInfo = getLocalStorage('user') || null;

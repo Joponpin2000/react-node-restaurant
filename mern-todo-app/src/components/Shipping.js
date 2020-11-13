@@ -21,7 +21,7 @@ const Shipping = (props) => {
             setErrormsg('All fields are required');
         }
         else {
-            // setLoading(true)
+
             const formData = ({
                 address,
                 city,

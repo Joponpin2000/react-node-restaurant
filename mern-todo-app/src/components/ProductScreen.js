@@ -14,9 +14,7 @@ const ProductScreen = (props) => {
 
     useEffect(() => {
         dispatch(detailsProduct(props.match.params.id))
-        return () => {
-            //
-        }
+
     }, [dispatch, props.match.params.id])
 
     const handleQtyChange = (evt) => {

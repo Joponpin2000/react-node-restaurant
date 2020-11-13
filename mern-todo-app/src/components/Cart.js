@@ -16,9 +16,6 @@ function CartScreen(props) {
         if (productId) {
             dispatch(addToCart(productId, qty));
         }
-        return () => {
-            //
-        }
     }, [dispatch, productId, qty])
 
     const removeFromCartHandler = (productId) => {

@@ -41,7 +41,6 @@ function PlaceOrderScreen(props) {
         let gy = `${str}`;
         return gy.toString().split('\\')[1];
     }
-    // just a test comment
 
     return (
         <Fragment>

@@ -21,8 +21,6 @@ function Footer(props) {
 
     return (
 
-        //just a comment
-
         <footer className='bg-dark text-white'>
             <Container>
                 <Row>
