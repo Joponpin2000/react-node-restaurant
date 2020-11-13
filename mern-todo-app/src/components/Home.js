@@ -49,7 +49,7 @@ const Home = (props) => {
                                 <Row>
                                     {
                                         (products) ? (
-                                            // Map objects like this
+
                                             products.map((product, i) =>
                                                 <Fragment key={i}>
                                                     <Col md='4'>
@@ -65,7 +65,6 @@ const Home = (props) => {
                                                                 <Card.Text>
                                                                     {product.productDesc}
                                                                 </Card.Text>
-                                                                {/* <a href="" onClick={() => props.addBasket('greyTshirt')}>Add to Cart</a> */}
                                                             </Card.Body>
                                                         </Card>
                                                     </Col>
