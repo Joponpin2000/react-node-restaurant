@@ -27,8 +27,10 @@ function CartScreen(props) {
         props.history.push("/login?redirect=shipping")
     }
     const getSecondPart = (str) => {
-        let gy = `${str}`;
-        return gy.toString().split('\\')[1];
+        // let gy = `${str}`;
+        // return gy.toString().split('\\')[1];
+        return str.substring(7);
+
     }
 
     return (

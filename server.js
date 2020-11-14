@@ -32,7 +32,7 @@ app.use('/api/auth', authRoutes);
 app.use('/api/category', categoryRoutes);
 app.use('/api/product', productRoutes);
 app.use('/api/products', AllProductsRoutes);
-app.use('/uploads/', express.static('uploads'));
+app.use(express.static('uploads'));
 app.use('/api/paystack', paymentRoutes);
 
 app.use(express.static(path.join(__dirname, './mern-todo-app/build')));

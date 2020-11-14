@@ -87,8 +87,9 @@ const AdminDashboard = (props) => {
     };
 
     const getSecondPart = (str) => {
-        let gy = `${str}`;
-        return gy.toString().split('\\')[1];
+        // let gy = `${str}`;
+        // return gy.toString().split('\\')[1];
+        return str.substring(7);
     }
 
     const handleProductImage = (evt) => {

@@ -18,9 +18,11 @@ const Home = (props) => {
     }, [dispatch])
 
     const getSecondPart = (str) => {
-        let gy = `${str}`;
-        console.log(gy.toString().split('\\')[1]);
-        return gy.toString().split('\\')[1];
+        // let gy = `${str}`;
+        // console.log(gy.toString().split('\\')[1]);
+        // return gy.toString().split('\\')[1];
+
+        return str.substring(7);
     }
 
     return (
@@ -54,7 +56,7 @@ const Home = (props) => {
                                                     <Col md='4'>
                                                         <Card className="mb-3">
                                                             <Link to={"/product/" + product._id}>
-                                                                <Card.Img height='250' src={`${server}/${product.productImage}`} alt={product.productName} />
+                                                                <Card.Img height='250' src={`${server}/${getSecondPart(product.productImage)}`} alt={product.productName} />
                                                             </Link>
                                                             <Card.Body>
                                                                 <Card.Title>
