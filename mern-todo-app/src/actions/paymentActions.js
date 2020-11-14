@@ -11,7 +11,6 @@ const makePayment = (paymentData) => async (dispatch) => {
 
         const url = await pay(paymentData);
 
-        //Redirect to pay
         window.location.replace(url);
 
     } catch (error) {

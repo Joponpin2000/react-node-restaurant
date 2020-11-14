@@ -40,7 +40,6 @@ const Signup = (props) => {
             setErrormsg('Passwords do not match');
         }
         else {
-            // setLoading(true)
             const formData = ({
                 username,
                 email,

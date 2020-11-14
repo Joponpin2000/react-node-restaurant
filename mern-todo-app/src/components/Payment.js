@@ -10,7 +10,7 @@ const Payment = (props) => {
 
     const handleSubmit = e => {
         e.preventDefault();
-        // setLoading(true)
+
         const formData = ({
             paymentMethod
         })

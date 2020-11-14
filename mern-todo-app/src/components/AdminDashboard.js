@@ -13,9 +13,7 @@ import { faHome, faPlus, faMoneyCheckAlt } from '@fortawesome/free-solid-svg-ico
 
 const AdminDashboard = (props) => {
 
-    //==================================
-    //        STATE                  
-    //==================================
+
     const [showCatModal, setShowCatModal] = useState(false);
     const [showProdModal, setShowProdModal] = useState(false);
     const categoryList = useSelector(state => state.categoryList);
@@ -39,9 +37,7 @@ const AdminDashboard = (props) => {
     const [errorMsg, setErrorMsg] = useState(errorSave || catErrorSave);
     const [successMsg, setSuccessMsg] = useState(successSave || catSuccessSave);
 
-    //==================================
-    //        HOOKS                  
-    //==================================
+
     const dispatch = useDispatch();
     useEffect(() => {
         dispatch(loadCategories())
@@ -49,9 +45,6 @@ const AdminDashboard = (props) => {
         dispatch(listProducts())
     }, [dispatch, successDelete]);
 
-    //==================================
-    //        EVENT HANDLERS                  
-    //==================================
 
     const handleMessages = evt => {
         setErrorMsg('');
@@ -136,9 +129,6 @@ const AdminDashboard = (props) => {
         }
     }
 
-    //==================================
-    //        HEADER                  
-    //==================================
 
     const showHeader = () => (
         <div className="bg-dark text-white py-4 mt-5">
@@ -153,10 +143,6 @@ const AdminDashboard = (props) => {
             </div>
         </div>
     );
-
-    //==================================
-    //        ACTION BUTTONS
-    //==================================
 
     const showActionButtons = () => (
         <div className="bg-light my-2">
@@ -181,10 +167,6 @@ const AdminDashboard = (props) => {
             </div>
         </div >
     )
-
-    //==================================
-    //        MODALS
-    //==================================
 
     const showCategoryModal = () => (
         <Modal show={showCatModal} onHide={handleCloseCat} >

@@ -53,7 +53,6 @@ const Header = (props) => {
                         )}
                         {userInfo && isAuthenticated() && (
                             <Fragment>
-                                {/* <Nav.Link className="text-white" to="/profile">My Profile ({userInfo.username})</Nav.Link> */}
                                 <Nav.Link className="text-white" onClick={handleLogout}>Logout</Nav.Link>
                             </Fragment>
                         )}

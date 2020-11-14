@@ -13,7 +13,6 @@ const paymentRoutes = require('./routes/payment');
 
 const paymentController = require('./controllers/payment');
 
-// middlewares
 app.use(bodyParser.urlencoded({
     extended: true,
 })
@@ -47,6 +46,6 @@ app.get('/payment-success/:id', paymentController.receipt);
 
 connectDB();
 
-const PORT = process.env.PORT || 4000;
+const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () => console.log("Server is running on Port: " + PORT));
