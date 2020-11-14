@@ -6,8 +6,6 @@ import Nav from 'react-bootstrap/Nav';
 import Container from 'react-bootstrap/Container';
 import { getNumbers } from '../actions/getAction';
 import { useSelector } from 'react-redux';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHamburger } from '@fortawesome/free-solid-svg-icons';
 
 const Header = (props) => {
     const userSignin = useSelector(state => state.userSignin);
@@ -28,9 +26,7 @@ const Header = (props) => {
         <Navbar bg="dark" variant="secondary" expand="md" fixed="top">
             <Container>
                 <Navbar.Brand href="/"> Pizzards</Navbar.Brand>
-                <Navbar.Toggle aria-controls="basic-navbar-nav">
-                    <FontAwesomeIcon icon={faHamburger} className="text-white" />
-                </Navbar.Toggle>
+                <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav" className="justify-content-end">
                     <Nav>
                         {!isAuthenticated() && (
