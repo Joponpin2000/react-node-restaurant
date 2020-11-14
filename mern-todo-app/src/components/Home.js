@@ -62,7 +62,7 @@ const Home = (props) => {
                                                                 </Card.Title>
                                                                 <Card.Text>
                                                                     {product.productDesc}
-                                                                    {getSecondPart(product.productImage)}
+                                                                    {product.productImage}
                                                                 </Card.Text>
                                                             </Card.Body>
                                                         </Card>
