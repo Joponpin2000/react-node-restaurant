@@ -26,7 +26,7 @@ export const fetchProducts = async () => {
         },
     }
 
-    const response = await axios.get('http://localhost:4000/api/products', config);
+    const response = await axios.get('/api/products', config);
     return response.data.products;
 }
 
@@ -37,7 +37,7 @@ export const fetchProductdetails = async (productId) => {
         },
     }
 
-    const response = await axios.get('http://localhost:4000/api/products/' + productId, config);
+    const response = await axios.get('/api/products/' + productId, config);
     return response.data.product;
 }
 

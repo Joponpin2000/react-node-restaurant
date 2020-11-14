@@ -59,7 +59,7 @@ function Footer(props) {
                 </Row>
                 <Row id="footer">
                     <Col md='6' sm='6' lg='6' className="mx-auto pt-5 text-center">
-                        Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved.  Developed by <a href="https://jofedo.netlify.app" className="nc">Joseph Idowu</a>
+                        Copyright <Link to="/" className="nc">Pizzards</a>&copy;<script>document.write(new Date().getFullYear());</script> All rights reserved.  Developed by <a href="https://jofedo.netlify.app" className="nc">Joseph Idowu</a>
                     </Col>
                 </Row>
             </Container>

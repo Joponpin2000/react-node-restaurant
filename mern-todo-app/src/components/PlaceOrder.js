@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import CheckoutSteps from './CheckoutSteps';
 import { makePayment } from '../actions/paymentActions';
+import { server } from '../api/url';
 
 function PlaceOrderScreen(props) {
     const cart = useSelector(state => state.cart);
@@ -68,7 +69,7 @@ function PlaceOrderScreen(props) {
                                             <Fragment>
                                                 <Col md='6'>
                                                     <Card>
-                                                        <Card.Img className="product-image" src={`http://localhost:4000/${getSecondPart(item.productImage)}`} alt={item.productName} />
+                                                        <Card.Img className="product-image" src={`${server}/${getSecondPart(item.productImage)}`} alt={item.productName} />
                                                     </Card>
                                                 </Col>
                                                 <Col md='6'>

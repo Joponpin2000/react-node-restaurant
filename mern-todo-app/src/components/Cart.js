@@ -3,8 +3,9 @@ import { Button, Card, Col, Container, Row } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { addToCart, removeFromCart } from '../actions/cartAction';
-function CartScreen(props) {
+import { server } from '../api/url';
 
+function CartScreen(props) {
     const productId = props.match.params.id;
     const qty = props.location.search ? Number(props.location.search.split("=")[1]) : 1;
     const cart = useSelector(state => state.cart);
@@ -49,7 +50,7 @@ function CartScreen(props) {
                                                     <Fragment>
                                                         <Col md='6'>
                                                             <Card>
-                                                                <Card.Img className="product-image" src={`http://localhost:4000/${getSecondPart(item.productImage)}`} alt={item.productName} />
+                                                                <Card.Img className="product-image" src={`${server}/${getSecondPart(item.productImage)}`} alt={item.productName} />
                                                             </Card>
                                                         </Col>
                                                         <Col md='6'>

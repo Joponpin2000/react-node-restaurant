@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { listProducts } from '../actions/productActions';
 import { showLoading } from '../helpers/loading';
+import { server } from '../api/url';
 
 const Home = (props) => {
 
@@ -52,7 +53,7 @@ const Home = (props) => {
                                                     <Col md='4'>
                                                         <Card className="mb-3">
                                                             <Link to={"/product/" + product._id}>
-                                                                <Card.Img height='250' src={`http://localhost:4000/${getSecondPart(product.productImage)}`} alt={product.productName} />
+                                                                <Card.Img height='250' src={`${server}/${getSecondPart(product.productImage)}`} alt={product.productName} />
                                                             </Link>
                                                             <Card.Body>
                                                                 <Card.Title>

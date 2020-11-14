@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { detailsProduct } from '../actions/productActions';
 import { showLoading } from '../helpers/loading';
+import { server } from '../api/url';
 
 const ProductScreen = (props) => {
 
@@ -44,7 +45,7 @@ const ProductScreen = (props) => {
                                     <Fragment>
                                         <Col md='4'>
                                             <Card>
-                                                <Card.Img className="product-image" src={`http://localhost:4000/${getSecondPart(product.productImage)}`} alt={product.productName} />
+                                                <Card.Img className="product-image" src={`${server}/${getSecondPart(product.productImage)}`} alt={product.productName} />
                                             </Card>
                                         </Col>
                                         <Col md='4'>
