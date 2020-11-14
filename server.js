@@ -38,7 +38,7 @@ app.use('/api/paystack', paymentRoutes);
 app.use(express.static(path.join(__dirname, './mern-todo-app/build')));
 
 app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, './mern-todo-app/build'));
+    res.sendFile(path.resolve(__dirname, './mern-todo-app/build', "index.html"));
 });
 
 app.get('/payment-success/:id', paymentController.receipt);
