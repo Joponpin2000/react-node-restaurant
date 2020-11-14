@@ -19,6 +19,7 @@ const Home = (props) => {
 
     const getSecondPart = (str) => {
         let gy = `${str}`;
+        console.log(gy.toString().split('\\')[1]);
         return gy.toString().split('\\')[1];
     }
 
@@ -62,7 +63,6 @@ const Home = (props) => {
                                                                 </Card.Title>
                                                                 <Card.Text>
                                                                     {product.productDesc}
-                                                                    {product.productImage}
                                                                 </Card.Text>
                                                             </Card.Body>
                                                         </Card>
