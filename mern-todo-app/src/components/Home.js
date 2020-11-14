@@ -54,7 +54,7 @@ const Home = (props) => {
                                                     <Col md='4'>
                                                         <Card className="mb-3">
                                                             <Link to={"/product/" + product._id}>
-                                                                <Card.Img height='250' src={`${server}/${getSecondPart(product.productImage)}`} alt={product.productName} />
+                                                                <Card.Img height='250' src={`${server}/${product.productImage}`} alt={product.productName} />
                                                             </Link>
                                                             <Card.Body>
                                                                 <Card.Title>
