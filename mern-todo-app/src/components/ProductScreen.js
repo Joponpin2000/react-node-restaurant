@@ -47,7 +47,7 @@ const ProductScreen = (props) => {
                                     <Fragment>
                                         <Col md='4'>
                                             <Card>
-                                                <Card.Img className="product-image" src={`${server}/${getSecondPart(product.productImage)}`} alt={product.productName} />
+                                                <Card.Img className="product-image" src={`${server}/${getSecondPart((product.productImage).substring(8))}`} alt={product.productName} />
                                             </Card>
                                         </Col>
                                         <Col md='4'>
