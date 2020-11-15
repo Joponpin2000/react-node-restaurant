@@ -27,9 +27,9 @@ const ProductScreen = (props) => {
     }
 
     const getSecondPart = (str) => {
-        let gy = `${str}`;
-        return gy.toString().split('\\')[1];
-        // return str.substring(8);
+        // let gy = `${str}`;
+        // return gy.toString().split('\\')[1];
+        return str.substring(8);
 
     }
 
@@ -47,7 +47,7 @@ const ProductScreen = (props) => {
                                     <Fragment>
                                         <Col md='4'>
                                             <Card>
-                                                <Card.Img className="product-image" src={`${server}/${product.productImage}`} alt={product.productName} />
+                                                <Card.Img className="product-image" src={`${server}/${getSecondPart(product.productImage)}`} alt={product.productName} />
                                             </Card>
                                         </Col>
                                         <Col md='4'>
@@ -55,7 +55,6 @@ const ProductScreen = (props) => {
                                                 <Card.Body>
                                                     <Card.Title>
                                                         {product.productName}
-                                                        {product.productImage}
                                                     </Card.Title><Card.Text>
                                                         4.5 stars (8 Reviews)
                                                         </Card.Text>
