@@ -69,6 +69,7 @@ exports.verify = async (req, res) => {
         request.get(options, async (err, response, body) => {
             if (err) {
                 console.log('Error occured', err);
+                res.redirect(`/cart`);
             } else {
                 const resData = JSON.parse(body);
 
