@@ -53,15 +53,18 @@ const AdminDashboard = (props) => {
 
     const handleShowCat = () => setShowCatModal(true);
     const handleShowProd = (product) => {
-
         setShowProdModal(true);
-        setId(product._id);
-        setProductName(product.productName);
-        setProductImage(getSecondPart(product.productImage));
-        setProductDesc(product.productDesc);
-        setProductPrice(product.productPrice);
-        setProductCategory(product.productCategory);
-        setProductQty(product.productQty);
+
+        if (product && product.productImage !== undefined) {
+
+            setId(product._id);
+            setProductName(product.productName);
+            setProductImage(product.productImage);
+            setProductDesc(product.productDesc);
+            setProductPrice(product.productPrice);
+            setProductCategory(product.productCategory);
+            setProductQty(product.productQty);
+        }
     };
 
     const handleCloseCat = () => {
@@ -85,12 +88,6 @@ const AdminDashboard = (props) => {
             dispatch(saveCategory(data));
         }
     };
-
-    const getSecondPart = (str) => {
-        // let gy = `${str}`;
-        // return gy.toString().split('\\')[1];
-        return str.substring(8);
-    }
 
     const handleProductImage = (evt) => {
         setProductImage(evt.target.files[0]);

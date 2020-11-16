@@ -38,13 +38,6 @@ function PlaceOrderScreen(props) {
         dispatch(makePayment(paymentData));
     }
 
-    const getSecondPart = (str) => {
-        // let gy = `${str}`;
-        // return gy.toString().split('\\')[1];
-        return str.substring(8);
-
-    }
-
     return (
         <Fragment>
             <CheckoutSteps step1 step2 step3 step4 />
@@ -65,13 +58,14 @@ function PlaceOrderScreen(props) {
                     <Col md='8'>
                         {
                             cartItems.map((item, i) =>
-                                (
+                                (item && item.productImage !== undefined) && (
+
                                     <Row className="my-2" key={i}>
                                         {
                                             <Fragment>
                                                 <Col md='6'>
                                                     <Card>
-                                                        <Card.Img className="product-image" src={`${server}/${(item.productImage).substring(8)}`} alt={item.productName} />
+                                                        <Card.Img className="product-image" src={`${server}/${item.productImage}`} alt={item.productName} />
                                                     </Card>
                                                 </Col>
                                                 <Col md='6'>

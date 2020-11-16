@@ -23,10 +23,10 @@ const Header = (props) => {
 
     const showNavigation = () => (
 
-        <Navbar bg="dark" variant="secondary" expand="md" fixed="top">
+        <Navbar bg="dark" variant="light" expand="md" fixed="top">
             <Container>
-                <Navbar.Brand href="/"> Pizzards</Navbar.Brand>
-                <Navbar.Toggle aria-controls="basic-navbar-nav" />
+                <Navbar.Brand href="/" className="text-white"> Pizzards</Navbar.Brand>
+                <Navbar.Toggle aria-controls="basic-navbar-nav text-white" />
                 <Navbar.Collapse id="basic-navbar-nav" className="justify-content-end">
                     <Nav>
                         {!isAuthenticated() && (

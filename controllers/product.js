@@ -5,7 +5,7 @@ exports.create = async (req, res) => {
     let productName = req.body.productName;
     let productDesc = req.body.productDesc;
     let productCategory = req.body.productCategory;
-    let productImage = req.file.path;
+    let productImage = req.file.path.substring(8);
     let productPrice = req.body.productPrice;
     let productQty = req.body.productQty;
 

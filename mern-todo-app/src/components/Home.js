@@ -17,14 +17,6 @@ const Home = (props) => {
 
     }, [dispatch])
 
-    const getSecondPart = (str) => {
-        // let gy = `${str}`;
-        // console.log(gy.toString().split('\\')[1]);
-        // return gy.toString().split('\\')[1];
-
-        return str.substring(8);
-    }
-
     return (
         <div className="mt-2 pt-5">
             {
@@ -52,24 +44,27 @@ const Home = (props) => {
                                         (products) ? (
 
                                             products.map((product, i) =>
-                                                <Fragment key={i}>
-                                                    <Col md='4'>
-                                                        <Card className="mb-3">
-                                                            <Link to={"/product/" + product._id}>
-                                                                <Card.Img height='250' src={`${server}/${getSecondPart(product.productImage)}`} alt={product.productName} />
-                                                            </Link>
-                                                            <Card.Body>
-                                                                <Card.Title>
-                                                                    <Link to={"/product/" + product._id} className="yc">{product.productName}</Link>
-                                                                    {' '} - {' '} <span className="yc pull-right"> ${product.productPrice}</span>
-                                                                </Card.Title>
-                                                                <Card.Text>
-                                                                    {product.productDesc}
-                                                                </Card.Text>
-                                                            </Card.Body>
-                                                        </Card>
-                                                    </Col>
-                                                </Fragment>
+                                                (product && product.productImage !== undefined) && (
+
+                                                    <Fragment key={i}>
+                                                        <Col md='4'>
+                                                            <Card className="mb-3">
+                                                                <Link to={"/product/" + product._id}>
+                                                                    <Card.Img height='250' src={`${server}/${product.productImage}`} alt={product.productName} />
+                                                                </Link>
+                                                                <Card.Body>
+                                                                    <Card.Title>
+                                                                        <Link to={"/product/" + product._id} className="yc">{product.productName}</Link>
+                                                                        {' '} - {' '} <span className="yc pull-right"> ${product.productPrice}</span>
+                                                                    </Card.Title>
+                                                                    <Card.Text>
+                                                                        {product.productDesc}
+                                                                    </Card.Text>
+                                                                </Card.Body>
+                                                            </Card>
+                                                        </Col>
+                                                    </Fragment>
+                                                )
                                             )
                                         )
                                             : (
