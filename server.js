@@ -37,11 +37,17 @@ app.use('/api/products', AllProductsRoutes);
 app.use(express.static('uploads'));
 app.use('/api/paystack', paymentRoutes);
 
+
 app.use(express.static(path.join(__dirname, './mern-todo-app/build')));
 
 app.get('*', (req, res) => {
     res.sendFile(path.resolve(__dirname, './mern-todo-app/build', "index.html"));
 });
+
+// MONGODB_URL = "mongodb://localhost:27017";
+// MONGODB_URL = "mongodb+srv://joponpin:joseph568742@restaurantcluster.dovg2.mongodb.net/restaurant?retryWrites=true&w=majority"
+
+
 
 app.get('/payment-success/:id', paymentController.receipt);
 

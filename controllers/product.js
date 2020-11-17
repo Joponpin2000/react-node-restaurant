@@ -69,18 +69,17 @@ exports.update = async (req, res) => {
 }
 
 exports.readAll = async (req, res) => {
-
     try {
-        await Product.find({}, (err, products) => {
+        products = await Product.find({});
+        if (products) {
             return res.status(200).json({
                 products
             });
-        })
-
+        }
     } catch (err) {
-        return res.status(500).json({
+        res.status(500).json({
             errorMessage: 'Please try again later'
-        })
+        });
     }
 
 }
