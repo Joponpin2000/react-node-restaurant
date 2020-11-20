@@ -52,7 +52,7 @@ function Footer(props) {
                             )}
                             {userInfo && isAuthenticated() && (
                                 <Fragment>
-                                    <li><Link to="/" onClick={handleLogout}>Logout</Link></li>
+                                    <li><Button onClick={handleLogout}>Logout</Button></li>
                                 </Fragment>
                             )}
                         </ul>

@@ -17,7 +17,7 @@ const Login = (props) => {
 
     const userSignin = useSelector(state => state.userSignin);
     const { loading, userInfo, error } = userSignin;
-    const [errormsg, setErrormsg] = useState(error || false);
+    const [errormsg, setErrormsg] = useState(false);
     const dispatch = useDispatch();
     const redirect = props.location.search ? props.location.search.split("=")[1] : null;
     useEffect(() => {
@@ -56,7 +56,10 @@ const Login = (props) => {
                         <FontAwesomeIcon icon={faEnvelope} />
                     </span>
                 </div>
-                <input name="email" onChange={(e) => setEmail(e.target.value)} className="form-control" placeholder="Email address" type="email" />
+                <input name="email" onChange={(e) => {
+                    setEmail(e.target.value);
+                    setErrormsg('');
+                }} className="form-control" placeholder="Email address" type="email" />
             </div>
             <div className="form-panel input-group">
                 <div className="input-group-grouped">
@@ -64,7 +67,10 @@ const Login = (props) => {
                         <FontAwesomeIcon icon={faLock} />
                     </span>
                 </div>
-                <input name="password" onChange={(e) => setPassword(e.target.value)} className="form-control" placeholder="Password" type="password" />
+                <input name="password" onChange={(e) => {
+                    setPassword(e.target.value);
+                    setErrormsg('');
+                }} className="form-control" placeholder="Password" type="password" />
             </div>
             <div className="form-group">
                 <button className="btn btn-primary btn-block" type="submit">
@@ -82,8 +88,8 @@ const Login = (props) => {
         <div className="login-container">
             <div className="row px-3 vh-100">
                 <div className="col-md-5 mx-auto align-self-center">
-                    {errormsg && showErrorMsg(errormsg)}
-                    {error && showErrorMsg(error)}
+                    {(errormsg || error) && showErrorMsg(errormsg || error)}
+                    {/* {errormsg && showErrorMsg(errormsg)} */}
                     {loading && <div className="text-center mb-4">{showLoading()}</div>}
                     {showLoginForm()}
                 </div>
