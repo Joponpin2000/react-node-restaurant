@@ -36,10 +36,13 @@ color: white;
     background-repeat: no-repeat;
     background-position: center;
     opacity: 1;
-    height: 80vh;
+    height: auto;
 
 }
 
+.help-block {
+    opacity: 0.7;
+}
 
 .checkout-steps {
     display: flex;
@@ -69,10 +72,14 @@ footer {
 footer ul {
     list-style: none;
     margin-bottom: 10px;
+    padding-left: 0;
+    margin-left: 0;
 }
 
 footer ul > li {
     margin-bottom: 10px;
+    padding-left: 0;
+    margin-left: 0;
 }
 
 #footer a {

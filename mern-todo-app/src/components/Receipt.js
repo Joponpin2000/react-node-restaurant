@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { getReceipt } from '../actions/paymentActions';
 
-const Receipt = props => {
+const Receipt = (props) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -17,7 +17,7 @@ const Receipt = props => {
       <h1>Congratulations {userPayment.amountPaid.fullName}</h1>
       <div>
         <p>
-          Your payment of GHS {userPayment.amountPaid.amount} was successful
+          Your payment of ${userPayment.amountPaid.amount} was successful
         </p>
         <p>
           Please keep your payment ID {userPayment.amountPaid.reference} for

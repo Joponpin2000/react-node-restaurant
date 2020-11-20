@@ -74,7 +74,7 @@ exports.verify = async (req, res) => {
                 const resData = JSON.parse(body);
 
                 //Divide the amount by 100 to get the actual amount paying;
-                const amount = resData.data.amount / 100;
+                const amount = (resData.data.amount / 100) / 400;
                 const { reference } = resData.data;
                 const { fullName } = resData.data.metadata;
 

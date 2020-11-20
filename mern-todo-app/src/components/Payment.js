@@ -22,10 +22,10 @@ const Payment = (props) => {
         <form className="signup-form mt-5" onSubmit={handleSubmit} noValidate>
             <div className="form-panel input-group px-3 py-3 bg-light ">
                 <div>
-                    <input name="paymentMethod" onChange={(e) => setPaymentMethod(e.target.value)} value="paypal" type="radio" />
+                    <input name="paymentMethod" onChange={(e) => setPaymentMethod(e.target.value)} value="Paystack" type="radio" />
                     {' '}
                     <label htmlFor="paymentMethod">
-                        Paypal
+                        Paystack
                     </label>
                 </div>
             </div>
@@ -39,7 +39,7 @@ const Payment = (props) => {
 
     return (
         <div>
-            <div className="login-container vh-100">
+            <div className="login-container vh-100 pt-5">
                 <CheckoutSteps step1 step2 step3 />
                 <div className="row px-3">
                     <div className="col-md-5 mx-auto align-self-center">

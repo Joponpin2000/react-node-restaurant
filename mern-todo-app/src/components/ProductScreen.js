@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { detailsProduct } from '../actions/productActions';
 import { showLoading } from '../helpers/loading';
-import { server } from '../api/url';
+// import { server } from '../api/url';
 
 const ProductScreen = (props) => {
 
@@ -30,10 +30,10 @@ const ProductScreen = (props) => {
     return (
         <Fragment>
             <Container className="mt-5 pt-5">
-                <Link to="/" className="text-warning">Back to home</Link>
+                <Link to="/" className="text-dark">Back to home</Link>
                 {
                     loading ? (
-                        <div className="text-center" > { showLoading()}</div>)
+                        <div className="text-center my-5" > { showLoading()}</div>)
                         :
                         error ? (<div>{error}</div>) : (
                             (product && product.productImage !== undefined) && (
@@ -42,7 +42,7 @@ const ProductScreen = (props) => {
                                         <Fragment>
                                             <Col md='4'>
                                                 <Card>
-                                                    <Card.Img className="product-image" src={`${server}/${product.productImage}`} alt={product.productName} />
+                                                    <Card.Img className="product-image" src={require(`./images/${product.productName}.jpg`)} alt={product.productName} />
                                                 </Card>
                                             </Col>
                                             <Col md='4'>

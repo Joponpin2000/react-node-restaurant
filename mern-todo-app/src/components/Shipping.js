@@ -66,7 +66,7 @@ const Shipping = (props) => {
 
     return (
         <div>
-            <div className="signup-container vh-100">
+            <div className="signup-container vh-100 pt-5">
                 <CheckoutSteps step1 step2 />
                 <div className="row px-3">
                     <div className="col-md-5 mx-auto align-self-center">

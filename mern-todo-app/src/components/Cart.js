@@ -3,7 +3,7 @@ import { Button, Card, Col, Container, Row } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { addToCart, removeFromCart } from '../actions/cartAction';
-import { server } from '../api/url';
+// import { server } from '../api/url';
 
 function CartScreen(props) {
     const productId = props.match.params.id;
@@ -30,11 +30,12 @@ function CartScreen(props) {
     return (
         <Fragment>
             <Container className="mt-5 pt-5">
-                <h4>Shopping Cart</h4>
+                <h4 className="my-4">Shopping Cart</h4>
+                <Link to="/" className="text-dark">Back to home</Link>
                 {
                     cartItems.length === 0
                         ?
-                        <div>Cart is empty</div>
+                        <div className="display-4 text-center text-warning my-5">Cart is empty</div>
                         :
                         <Row>
                             <Col md='8'>
@@ -47,14 +48,14 @@ function CartScreen(props) {
                                                     <Fragment>
                                                         <Col md='6'>
                                                             <Card>
-                                                                <Card.Img className="product-image" src={`${server}/${item.productImage}`} alt={item.productName} />
+                                                                <Card.Img className="product-image" src={require(`./images/${item.productName}.jpg`)} alt={item.productName} />
                                                             </Card>
                                                         </Col>
                                                         <Col md='6'>
                                                             <Card style={{ 'border': 'none' }}>
                                                                 <Card.Body>
                                                                     <Card.Title>
-                                                                        <Link to={"/product/" + item.product}>
+                                                                        <Link to={"/product/" + item.product} className="text-dark">
                                                                             {item.productName}
                                                                         </Link>
                                                                     </Card.Title>
@@ -82,9 +83,9 @@ function CartScreen(props) {
                                 <Card>
                                     <Card.Body>
                                         <Card.Text>
-                                            Subtotal: ( {cartItems.reduce((a, c) => a + c.qty, 0)} items )
+                                            Subtotal: ( {cartItems.reduce((a, c) => Math.round(a + c.qty), 0)} items )
                                                             :
-                                                            ${cartItems.reduce((a, c) => a + c.productPrice * c.qty, 0)}
+                                                            ${cartItems.reduce((a, c) => Math.round(a + c.productPrice * c.qty), 0)}
                                         </Card.Text>
                                         {
                                             <Button type="submit" onClick={checkoutHandler} className="btn btn-warning btn-block" disabled={cartItems.length === 0}>Proceed to Checkout</Button>

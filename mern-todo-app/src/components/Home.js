@@ -4,7 +4,9 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { listProducts } from '../actions/productActions';
 import { showLoading } from '../helpers/loading';
-import { server } from '../api/url';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCar, faMoneyCheck, faPizzaSlice } from '@fortawesome/free-solid-svg-icons';
+// import { server } from '../api/url';
 
 const Home = (props) => {
 
@@ -21,24 +23,34 @@ const Home = (props) => {
         <div className="mt-2 pt-5">
             {
                 loading ? (
-                    <div className="text-center mx-5" > {showLoading()}</div>)
+                    <div className="text-center mx-5 my-5" > {showLoading()}</div>)
                     :
                     error ? (<div>{error}</div>) : (
                         < Fragment >
-                            <Jumbotron id="home-bg">
+                            <Jumbotron id="home-bg" className="mt-3 pt-5">
                                 <Container>
-                                    <Row>
-                                        <Col className="text-white text-center">
-                                            <h1 className="display-3 nc mt-3"><b>Pizzards</b></h1>
-                                            <p className="h3">Baked Italian pizzas at your fingertips</p>
-                                            <p className="h2 mt-4">Give in to the <b><i className="nc">taste</i></b>!</p>
-
+                                    <h1 className="text-white text-center display-4 mt-5">Baked Italian <b className="nc">pizzas</b></h1>
+                                    <Row className="text-white text-center px-5 mt-5">
+                                        <Col md="4">
+                                            <FontAwesomeIcon icon={faPizzaSlice} size="2x" className="yc mb-2" />
+                                            <h3>Hot and Yummy</h3>
+                                            <p className="help-block">Suspendisse amet ullamco</p>
+                                        </Col>
+                                        <Col md="4" className="my-5">
+                                            <FontAwesomeIcon icon={faCar} size="3x" className="yc mb-2" />
+                                            <h3>Fast Delivery</h3>
+                                            <p className="help-block">Suspendisse amet ullamco</p>
+                                        </Col>
+                                        <Col md="4">
+                                            <FontAwesomeIcon icon={faMoneyCheck} size="2x" className="yc mb-2" />
+                                            <h3>E-Payment</h3>
+                                            <p className="help-block">Suspendisse amet ullamco</p>
                                         </Col>
                                     </Row>
                                 </Container>
                             </Jumbotron>
                             <Container>
-                                <h3 className="yc mb-4"><b>Popular Meals</b></h3>
+                                <h3 className="mb-4"><b>Popular Meals</b></h3>
                                 <Row>
                                     {
                                         (products) ? (
@@ -50,12 +62,12 @@ const Home = (props) => {
                                                         <Col md='4'>
                                                             <Card className="mb-3">
                                                                 <Link to={"/product/" + product._id}>
-                                                                    <Card.Img height='250' src={`${server}/${product.productImage}`} alt={product.productName} />
+                                                                    <Card.Img height='250' src={require(`./images/${product.productName}.jpg`)} alt={product.productName} />
                                                                 </Link>
                                                                 <Card.Body>
                                                                     <Card.Title>
-                                                                        <Link to={"/product/" + product._id} className="yc">{product.productName}</Link>
-                                                                        {' '} - {' '} <span className="yc pull-right"> ${product.productPrice}</span>
+                                                                        <Link to={"/product/" + product._id} className="text-dark"><b>{product.productName}</b></Link>
+                                                                        {' '} - {' '} <span className="pull-right"> ${product.productPrice}</span>
                                                                     </Card.Title>
                                                                     <Card.Text>
                                                                         {product.productDesc}

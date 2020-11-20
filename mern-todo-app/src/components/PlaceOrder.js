@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import CheckoutSteps from './CheckoutSteps';
 import { makePayment } from '../actions/paymentActions';
-import { server } from '../api/url';
+// import { server } from '../api/url';
 
 function PlaceOrderScreen(props) {
     const cart = useSelector(state => state.cart);
@@ -28,7 +28,7 @@ function PlaceOrderScreen(props) {
     const placeOrderHandler = () => {
         let email = userInfo.email;
         let name = userInfo.username;
-        let price = totalPrice;
+        let price = totalPrice * 400;
         const paymentData = ({
             email,
             name,
@@ -39,7 +39,7 @@ function PlaceOrderScreen(props) {
     }
 
     return (
-        <Fragment>
+        <div className="pt-5">
             <CheckoutSteps step1 step2 step3 step4 />
             <Container>
                 <h4>Shipping</h4>
@@ -49,8 +49,8 @@ function PlaceOrderScreen(props) {
                         {cart.shipping.postalCode}, {cart.shipping.country}
                     </Col>
                     <Col md='4'>
-                        <div>
-                            Payment Method: {cart.payment.paymentMethod}
+                        <div className="text-dark">
+                            Payment Method: <b>{cart.payment.paymentMethod}</b>
                         </div>
                     </Col>
                 </Row>
@@ -65,14 +65,14 @@ function PlaceOrderScreen(props) {
                                             <Fragment>
                                                 <Col md='6'>
                                                     <Card>
-                                                        <Card.Img className="product-image" src={`${server}/${item.productImage}`} alt={item.productName} />
+                                                        <Card.Img className="product-image" src={require(`./images/${item.productName}.jpg`)} alt={item.productName} />
                                                     </Card>
                                                 </Col>
                                                 <Col md='6'>
                                                     <Card style={{ 'border': 'none' }}>
                                                         <Card.Body>
                                                             <Card.Title>
-                                                                <Link to={"/product/" + item._id}>
+                                                                <Link to={"/product/" + item._id} className="text-dark">
                                                                     {item.productName}
                                                                 </Link>
                                                             </Card.Title>
@@ -95,14 +95,10 @@ function PlaceOrderScreen(props) {
                             <Card.Body>
                                 <div>
                                     <h3>Order Summary</h3>
-                                    <p>Items</p>
-                                    <p>${itemsPrice}</p>
-                                    <p>Shipping</p>
-                                    <p>${shippingPrice}</p>
-                                    <p>Tax</p>
-                                    <p>${taxPrice}</p>
-                                    <p>Order Total</p>
-                                    <p>${totalPrice}</p>
+                                    <p>Items: ${itemsPrice}</p>
+                                    <p>Shipping: ${shippingPrice}</p>
+                                    <p>Tax: ${taxPrice}</p>
+                                    <p>Order Total: <b>${totalPrice}</b></p>
                                 </div>
                                 <Button onClick={placeOrderHandler} className="btn btn-warning btn-block">Place Order</Button>
                             </Card.Body>
@@ -110,7 +106,7 @@ function PlaceOrderScreen(props) {
                     </Col>
                 </Row>
             </Container>
-        </Fragment >
+        </div >
     )
 }
 export default PlaceOrderScreen;

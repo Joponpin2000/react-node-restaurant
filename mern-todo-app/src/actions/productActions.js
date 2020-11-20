@@ -13,6 +13,7 @@ const listProducts = () => async (dispatch) => {
             payload: products
         })
     } catch (error) {
+        console.log(error);
         dispatch({
             type: PRODUCT_LIST_FAIL,
             payload: error.response.data.errorMessage

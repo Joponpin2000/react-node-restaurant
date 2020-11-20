@@ -25,7 +25,7 @@ const Header = (props) => {
 
         <Navbar bg="dark" variant="light" expand="md" fixed="top">
             <Container>
-                <Navbar.Brand href="/" className="text-white"> Pizzards</Navbar.Brand>
+                <Navbar.Brand href="/" className="text-white my-2"> Pizzards</Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav text-white" />
                 <Navbar.Collapse id="basic-navbar-nav" className="justify-content-end">
                     <Nav>
