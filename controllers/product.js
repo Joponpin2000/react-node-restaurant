@@ -105,11 +105,15 @@ exports.readOne = async (req, res) => {
 
 exports.delete = async (req, res) => {
     try {
-        const deleteProduct = await Product.findById(req.params.id);
+        const deleteProduct = await Product.deleteMany(req.params.id);
         if (deleteProduct) {
-            await deleteProduct.remove();
-            res.json({
+            return res.json({
                 successMessage: 'Product Deleted'
+            });
+        }
+        else {
+            return res.status(500).json({
+                errorMessage: 'Please try again later'
             })
         }
     } catch (err) {
