@@ -55,7 +55,7 @@ exports.verify = async (req, res) => {
         // I need the reference automatically after initialization and it can be accessed as req.query.reference
         //I should set this route in my paystack dashboard
 
-        const userReferenceFromInitializePayment = req.query.reference;
+        const userReferenceFromInitializePayment = req.params.reference;
         const options = {
             url:
                 'https://api.paystack.co/transaction/verify/' +
@@ -66,11 +66,12 @@ exports.verify = async (req, res) => {
                 'cache-control': 'no-cache',
             },
         };
-        request.get(options, async (err, response, body) => {
+        request.get(options, async (err, body) => {
             if (err) {
                 console.log('Error occured', err);
                 res.redirect(`/cart`);
             } else {
+                console.log(body.data)
                 const resData = JSON.parse(body);
 
                 //Divide the amount by 100 to get the actual amount paying;

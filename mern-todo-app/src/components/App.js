@@ -18,6 +18,7 @@ import Payment from './Payment';
 import PlaceOrder from './PlaceOrder';
 import Receipt from './Receipt';
 import Footer from './Footer';
+// import Callback from './Callback';
 
 class App extends Component {
   render() {
@@ -32,6 +33,7 @@ class App extends Component {
           <Route exact path="/shipping" component={Shipping} />
           <Route exact path="/payment" component={Payment} />
           <Route exact path="/placeorder" component={PlaceOrder} />
+          {/* <Route exact path="/payment/verify/:reference?" component={Callback} /> */}
           <Route exact path='/payment-success/:id' component={Receipt} />
           <UserRoute exact path="/user/dashboard" component={UserDashboard} />
           <AdminRoute exact path="/admin/dashboard" component={AdminDashboard} />

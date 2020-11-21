@@ -17,6 +17,22 @@ export const pay = async (paymentData) => {
     return response.data.url;
 }
 
+export const verify = async (reference) => {
+    let cookie = getCookie("token");
+
+    const config = {
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": "Bearer " + cookie,
+        },
+        withCredentials: true
+    }
+
+    const response = await axios.get('/api/paystack/callback?' + reference, config);
+
+    return response.data.url;
+}
+
 
 export const getPaymentReceipt = async (id) => {
     let cookie = getCookie("token");
