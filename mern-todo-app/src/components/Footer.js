@@ -1,23 +1,13 @@
 import React, { Fragment, useEffect } from 'react';
 import { Col, Container, Row } from 'react-bootstrap';
-import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { getNumbers } from '../actions/getAction';
-import { isAuthenticated, logout } from '../helpers/auth';
+import { isAuthenticated } from '../helpers/auth';
 
 function Footer(props) {
-
-    const userSignin = useSelector(state => state.userSignin);
-    const { userInfo } = userSignin;
     useEffect(() => {
         getNumbers();
     }, [])
-
-    const handleLogout = () => {
-        logout(() => {
-            props.history.push('/');
-        });
-    }
 
     return (
 
@@ -48,11 +38,6 @@ function Footer(props) {
                             {isAuthenticated() && isAuthenticated().role === 1 && (
                                 <Fragment>
                                     <li><Link to="/admin/dashboard">Dashboard</Link></li>
-                                </Fragment>
-                            )}
-                            {userInfo && isAuthenticated() && (
-                                <Fragment>
-                                    <li><button onClick={handleLogout}>Logout</button></li>
                                 </Fragment>
                             )}
                         </ul>
