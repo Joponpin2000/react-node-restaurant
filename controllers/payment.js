@@ -33,7 +33,7 @@ exports.pay = async (req, res) => {
             if (err) {
                 return res.status(500).json({
                     errorMessage: 'Please try again later'
-                })
+                });
             } else {
                 const responseData = JSON.parse(body);
                 const { authorization_url } = responseData.data;

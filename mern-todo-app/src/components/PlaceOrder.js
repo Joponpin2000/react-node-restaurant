@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react'
+import React, { Fragment, useEffect } from 'react'
 import { Button, Card, Col, Container, Row } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
@@ -13,18 +13,23 @@ function PlaceOrderScreen(props) {
     const userSignin = useSelector(state => state.userSignin);
     const { userInfo } = userSignin;
     const dispatch = useDispatch();
+    useEffect(() => {
 
-    if (!shipping.address) {
-        props.history.push('/shipping')
-    }
+        if (!payment.paymentMethod) {
+            props.history.push('/payment')
+        }
 
-    if (!payment.paymentMethod) {
-        props.history.push('/payment')
-    }
+        if (!shipping.address) {
+            props.history.push('/shipping')
+        }
+
+    }, [payment.paymentMethod, props.history, shipping.address]);
+
     const itemsPrice = cartItems.reduce((a, c) => a + c.productPrice * c.qty, 0);
     const shippingPrice = itemsPrice > 100 ? 0 : 10;
     const taxPrice = 0.15 * itemsPrice;
     const totalPrice = itemsPrice + shippingPrice + taxPrice;
+
     const placeOrderHandler = () => {
         let email = userInfo.email;
         let name = userInfo.username;
