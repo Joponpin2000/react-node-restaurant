@@ -105,7 +105,7 @@ function PlaceOrderScreen(props) {
                                     <p>Tax: ${taxPrice}</p>
                                     <p>Order Total: <b>${totalPrice}</b></p>
                                 </div>
-                                <Button onClick={placeOrderHandler} className="btn btn-warning btn-block">Place Order</Button>
+                                <Button onClick={placeOrderHandler || alert("Couldn't connect to Paystack")} className="btn btn-warning btn-block">Place Order</Button>
                             </Card.Body>
                         </Card>
                     </Col>
