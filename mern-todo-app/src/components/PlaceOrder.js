@@ -33,11 +33,11 @@ function PlaceOrderScreen(props) {
     const placeOrderHandler = () => {
         let email = userInfo.email;
         let name = userInfo.username;
-        let price = totalPrice * 400;
+        let amount = totalPrice * 400;
         const paymentData = ({
             email,
             name,
-            price
+            amount
         });
 
         dispatch(makePayment(paymentData));

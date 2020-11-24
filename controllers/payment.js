@@ -1,6 +1,8 @@
 const request = require('request');
 const Payment = require('../models/Payment');
-require('dotenv').config()
+const axios = require('axios');
+const _ = require('lodash');
+require('dotenv').config();
 
 const secretKey = process.env.SECRET_KEY;
 
@@ -8,38 +10,72 @@ exports.pay = async (req, res) => {
 
     try {
 
-        //Initialize payment
-
-        const formData = {
-            email: req.body.email,
-            amount: parseInt(req.body.price) * 100,
-        };
-
-        formData.metadata = {
-            fullName: req.body.name,
-            // phoneNumber: '487ehwjehwjew',  TODO:// ADD PHONE NUMBER TO SIGNUP DETAILS OF ENTIRE APP
-        };
-
-        const options = {
-            url: 'https://api.paystack.co/transaction/initialize',
-            form: formData,
+        //axios Set up
+        const Axios = axios.create({
             headers: {
                 authorization: 'Bearer ' + secretKey,
-            },
-        };
-
-        //Make the request
-        request.post(options, function (err, response, body) {
-            if (err) {
-                return res.status(500).json({
-                    errorMessage: 'Please try again later'
-                });
-            } else {
-                const responseData = JSON.parse(body);
-                const { authorization_url } = responseData.data;
-                res.status(200).json({ url: authorization_url });
+                'content-type': 'application/json',
+                'cache-control': 'no-cache'
             }
         });
+
+        const form = _.pick(req.body, ['amount', 'email', 'name']);
+        form.metadata = {
+            full_name: form.name
+        }
+        form.amount *= 100;
+
+        Axios.post('https://api.paystack.co/transaction/initialize', form)
+            .then((response) => {
+                const paystackResponse = response.data;
+                const auth_url = paystackResponse.data.authorization_url;
+                return res.status(200).json({ url: auth_url });
+            })
+            .catch((error) => {
+                console.log("here");
+                return res.status(500).json({
+                    errorMessage: 'Error occured try again later'
+                })
+            })
+
+        // //Initialize payment
+        // const formData = {
+        //     email: req.body.email,
+        //     amount: parseInt(req.body.amount) * 100,
+        // };
+
+        // formData.metadata = {
+        //     fullName: req.body.name,
+        //     // phoneNumber: '487ehwjehwjew',  TODO:// ADD PHONE NUMBER TO SIGNUP DETAILS OF ENTIRE APP
+        // };
+
+        // const options = {
+        //     url: 'https://api.paystack.co/transaction/initialize',
+        //     form: formData,
+        //     headers: {
+        //         authorization: 'Bearer ' + secretKey,
+        //     },
+        // };
+
+        // // Make the request
+        // request.post(options, function (err, response, body) {
+        //     if (err) {
+        //         console.log('here')
+
+        //         return res.status(500).json({
+        //             errorMessage: 'Please try again later'
+        //         });
+        //     } else {
+        //         console.log('moving')
+
+        //         const responseData = JSON.parse(body);
+        //         const { authorization_url } = responseData.data;
+        //         console.log('mov')
+
+        //         return res.status(200).json({ url: authorization_url });
+        //     }
+        // });
+
     } catch (err) {
         return res.status(500).json({
             errorMessage: 'Please try again later'
@@ -50,47 +86,35 @@ exports.pay = async (req, res) => {
 exports.verify = async (req, res) => {
 
     try {
+        const ref = req.params.reference;
+        const url = 'https://api.paystack.co/transaction/verify/' + encodeURIComponent(ref);
 
-        // Verify Payment
-        // I need the reference automatically after initialization and it can be accessed as req.query.reference
-        //I should set this route in my paystack dashboard
-
-        const userReferenceFromInitializePayment = req.params.reference;
-        const options = {
-            url:
-                'https://api.paystack.co/transaction/verify/' +
-                encodeURIComponent(userReferenceFromInitializePayment),
-            headers: {
-                authorization: 'Bearer ' + secretKey,
-                'content-type': 'application/json',
-                'cache-control': 'no-cache',
-            },
-        };
-        request.get(options, async (err, body) => {
-            if (err) {
-                console.log('Error occured', err);
-                res.redirect(`/cart`);
-            } else {
-                console.log(body.data)
-                const resData = JSON.parse(body);
-
-                //Divide the amount by 100 to get the actual amount paying;
-                const amount = (resData.data.amount / 100) / 400;
-                const { reference } = resData.data;
-                const { fullName } = resData.data.metadata;
-
-                //Save to the database
+        Axios.get(url)
+            .then((response) => {
+                const { id, reference, amount, customer } = response.data.data;
+                const { email } = customer;
+                const fullName = email.split("@")[0];
+                amount = (amount / 100) / 400;
                 const newPayment = new Payment({ fullName, amount, reference });
-                await newPayment.save();
-                res.redirect(`/payment-success/${newDonation._id}`);
-            }
-        });
+                newPayment.save()
+                    .then((payment) => {
+                        if (!payment) {
+                            return res.redirect('/error');
+                            console.log("error occured saving");
+                        }
+                        res.redirect(`/payment-success/${newDonation._id}`);
+                    })
+                    .catch((e) => {
+                        res.redirect('/error');
+                    })
+            })
     } catch (err) {
         return res.status(500).json({
             errorMessage: 'Please try again later'
         })
     }
 }
+
 
 exports.receipt = async (req, res) => {
 
