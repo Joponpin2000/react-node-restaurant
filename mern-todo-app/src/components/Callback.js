@@ -7,7 +7,10 @@ function Callback(props) {
     useEffect(() => {
         const reference = props.location.search.split("reference=")[1];
         console.log(reference)
-        verify(reference);
+        verify(reference)
+            .then((url) => {
+                window.location.replace(url);
+            });
     }, [props.location.search]);
 
     return (

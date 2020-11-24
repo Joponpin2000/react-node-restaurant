@@ -84,14 +84,23 @@ exports.pay = async (req, res) => {
 }
 
 exports.verify = async (req, res) => {
-
     try {
-        const ref = req.params.reference;
+        const ref = req.query.ref;
+
         const url = 'https://api.paystack.co/transaction/verify/' + encodeURIComponent(ref);
+
+        //axios Set up
+        const Axios = axios.create({
+            headers: {
+                authorization: 'Bearer ' + secretKey,
+                'content-type': 'application/json',
+                'cache-control': 'no-cache'
+            }
+        });
 
         Axios.get(url)
             .then((response) => {
-                const { id, reference, amount, customer } = response.data.data;
+                let { id, reference, amount, customer } = response.data.data;
                 const { email } = customer;
                 const fullName = email.split("@")[0];
                 amount = (amount / 100) / 400;
@@ -100,14 +109,21 @@ exports.verify = async (req, res) => {
                     .then((payment) => {
                         if (!payment) {
                             return res.redirect('/error');
-                            console.log("error occured saving");
                         }
-                        res.redirect(`/payment-success/${newDonation._id}`);
+                        return res.status(200).json({ url: "/payment-success/" + req.user._id });
                     })
                     .catch((e) => {
+                        console.log('database')
                         res.redirect('/error');
                     })
             })
+            .catch((error) => {
+                return res.status(500).json({
+                    errorMessage: 'Error occured try again later'
+                })
+            })
+
+
     } catch (err) {
         return res.status(500).json({
             errorMessage: 'Please try again later'
@@ -120,9 +136,17 @@ exports.receipt = async (req, res) => {
 
     try {
         const userId = req.params.id;
-        const user = await Payment.findById(userId);
-        //Redirect to UI
-        res.status(200).json({ user: user });
+
+        await Payment.findById(userId, (err, user) => {
+            if (err) {
+                return res.status(500).json({
+                    errorMessage: 'Please try again later'
+                });
+            }
+            //Redirect to UI
+            return res.status(200).json({ user: user });
+        });
+
     } catch (err) {
         return res.status(500).json({
             errorMessage: 'Please try again later'

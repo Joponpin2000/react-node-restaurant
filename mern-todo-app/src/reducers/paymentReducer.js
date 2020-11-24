@@ -1,6 +1,6 @@
 import { GET_RECEIPT_REQUEST, GET_RECEIPT_FAIL, GET_RECEIPT_SUCCESS } from '../constants/paymentConstants';
 
-function paymentReducer(state = { amountPaid: '#3000' }, action) {
+function paymentReducer(state = {}, action) {
     switch (action.type) {
         case GET_RECEIPT_REQUEST:
             return {
@@ -8,11 +8,12 @@ function paymentReducer(state = { amountPaid: '#3000' }, action) {
             };
 
         case GET_RECEIPT_SUCCESS:
+
             return {
                 ...state,
                 loading: false,
                 success: true,
-                amountPaid: action.payload,
+                user: action.payload,
             };
         case GET_RECEIPT_FAIL:
             return {

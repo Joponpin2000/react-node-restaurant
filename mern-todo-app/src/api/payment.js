@@ -28,7 +28,7 @@ export const verify = async (reference) => {
         withCredentials: true
     }
 
-    const response = await axios.get('/api/paystack/callback?' + reference, config);
+    const response = await axios.get('/api/paystack/callback?ref=' + reference, config);
 
     return response.data.url;
 }
