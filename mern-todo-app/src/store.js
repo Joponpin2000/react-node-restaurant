@@ -11,7 +11,7 @@ import { paymentReducer } from './reducers/paymentReducer';
 
 const cartItems = getCookie("cartItems") || [];
 const userInfo = getLocalStorage('user') || null;
-const initialState = { cart: { cartItems, shipping: {}, payment: {} }, userSignin: { userInfo } };
+const initialState = { cart: { cartItems, shipping: {}, payment: {} }, userSignin: { userInfo }, userPayment: { receipt } };
 const reducer = combineReducers({
     productList: productListReducer,
     productDetails: productDetailsReducer,
