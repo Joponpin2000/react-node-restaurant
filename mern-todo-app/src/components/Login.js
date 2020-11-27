@@ -87,10 +87,10 @@ const Login = (props) => {
 
         <div className="login-container">
             <div className="row px-3 vh-100">
-                <div className="col-md-5 mx-auto align-self-center">
+                <div className="col-md-5 mx-auto align-self-center pt-5">
                     {(errormsg || error) && showErrorMsg(errormsg || error)}
                     {/* {errormsg && showErrorMsg(errormsg)} */}
-                    {loading && <div className="text-center mb-4">{showLoading()}</div>}
+                    {loading && <div className="text-center mb-4 my-5">{showLoading()}</div>}
                     {showLoginForm()}
                 </div>
             </div>

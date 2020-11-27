@@ -1,10 +1,11 @@
 import { GET_RECEIPT_REQUEST, GET_RECEIPT_FAIL, GET_RECEIPT_SUCCESS } from '../constants/paymentConstants';
 
-function paymentReducer(state = {}, action) {
+function paymentReducer(state = { user: {} }, action) {
     switch (action.type) {
         case GET_RECEIPT_REQUEST:
             return {
-                loading: true
+                loading: true,
+                user: {},
             };
 
         case GET_RECEIPT_SUCCESS:

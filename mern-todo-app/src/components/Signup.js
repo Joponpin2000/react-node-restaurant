@@ -99,10 +99,10 @@ const Signup = (props) => {
 
         <div className="signup-container">
             <div className="row px-3 vh-100">
-                <div className="col-md-5 mx-auto align-self-center">
+                <div className="col-md-5 mx-auto pt-5 align-self-center">
                     {successmsg && showSuccessMsg(successmsg)}
                     {errormsg && showErrorMsg(errormsg)}
-                    {loading && <div className="text-center mb-4">{showLoading()}</div>}
+                    {loading && <div className="text-center mb-4 my-5">{showLoading()}</div>}
                     {showSignupForm()}
                 </div>
             </div>
