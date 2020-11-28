@@ -11,32 +11,34 @@ const Receipt = (props) => {
     dispatch(getReceipt(props));
   }, [props, dispatch]);
 
-  const receipt = useSelector(state => state.userPayment);
+  const userPayment = useSelector(state => state.userPayment);
+
+  const { receipt } = userPayment;
 
   return (
     <div className="mt-5 pt-5">
       {
-        !receipt.user
+        !receipt
           ?
           (
             <div className="text-center my-5"> { showLoading()}</div>
           )
           :
           (
-            <div className="my-5 py-5">
+            <div className="py-5 alert alert-success">
 
-              <button className="btn btn-secondary ml-5">
-                <Link to='/'>Back Home</Link>
+              <button className="btn btn-success ml-5">
+                <Link to='/' className="text-white">Continue Shopping</Link>
               </button>
               <div className="text-center">
 
-                <h1>Congratulations {userPayment.receipt.fullName}</h1>
+                <h1>Congratulations, {receipt.fullName}</h1>
                 <div>
                   <p>
-                    Your payment of ${userPayment.receipt.amount} was successful
+                    Your payment of <b>${receipt.amount}</b> was successful
                 </p>
                   <p>
-                    Please keep your payment ID {userPayment.receipt.reference} for
+                    Please keep your payment ID <b> <u> {receipt.reference} </u> </b> for
                       future reference
               </p>
                 </div>

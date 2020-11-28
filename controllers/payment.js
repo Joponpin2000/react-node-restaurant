@@ -32,7 +32,7 @@ exports.pay = async (req, res) => {
                 return res.status(200).json({ url: auth_url });
             })
             .catch((error) => {
-                console.log("here");
+
                 return res.status(500).json({
                     errorMessage: 'Error occured try again later'
                 })
@@ -110,7 +110,7 @@ exports.verify = async (req, res) => {
                         if (!payment) {
                             return res.redirect('/error');
                         }
-                        return res.status(200).json({ url: "/payment-success/" + req.user._id });
+                        return res.status(200).json({ url: "/payment-success/" + reference });
                     })
                     .catch((e) => {
                         console.log('database')
@@ -135,15 +135,15 @@ exports.verify = async (req, res) => {
 exports.receipt = async (req, res) => {
 
     try {
-        const userId = req.params.id;
+        const userRef = req.params.id;
 
-        await Payment.findById(userId, (err, user) => {
+        await Payment.findOne({ reference: userRef }, (err, user) => {
             if (err) {
                 return res.status(500).json({
                     errorMessage: 'Please try again later'
                 });
             }
-            //Redirect to UI
+
             return res.status(200).json({ user: user });
         });
 

@@ -275,7 +275,7 @@ const AdminDashboard = (props) => {
     const showProductsList = () => (
         <Fragment>
             <h3>Products</h3>
-            <Table striped bordered hover>
+            <Table striped bordered hover responsive>
                 <thead><tr>
                     <th>#</th>
                     <th>Name</th>

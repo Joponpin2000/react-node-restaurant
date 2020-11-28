@@ -3,7 +3,6 @@ import isEmail from 'validator/lib/isEmail';
 import isEmpty from 'validator/lib/isEmpty';
 import { Link } from 'react-router-dom';
 import { showErrorMsg } from '../helpers/message';
-import { showLoading } from '../helpers/loading';
 import { isAuthenticated } from '../helpers/auth';
 import { signin } from '../actions/userActions';
 import { useDispatch, useSelector } from 'react-redux';
@@ -74,6 +73,14 @@ const Login = (props) => {
             </div>
             <div className="form-group">
                 <button className="btn btn-primary btn-block" type="submit">
+                    {loading && <span className="">
+                        <span className="pull-left text-dark">
+                            <span className="spinner-border spinner-border-sm" role="status">
+                                <span className="sr-only">Loading...</span>
+                            </span>
+                        </span>
+                    </span>
+                    }{' '}
                     Login
                 </button>
             </div>
@@ -90,7 +97,6 @@ const Login = (props) => {
                 <div className="col-md-5 mx-auto align-self-center pt-5">
                     {(errormsg || error) && showErrorMsg(errormsg || error)}
                     {/* {errormsg && showErrorMsg(errormsg)} */}
-                    {loading && <div className="text-center mb-4 my-5">{showLoading()}</div>}
                     {showLoginForm()}
                 </div>
             </div>
