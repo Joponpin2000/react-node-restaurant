@@ -1,6 +1,6 @@
 import React, { Fragment, useEffect } from 'react';
 import { Col, Container, Row } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import { getNumbers } from '../actions/getAction';
 import { isAuthenticated } from '../helpers/auth';
 
@@ -53,4 +53,4 @@ function Footer(props) {
     )
 }
 
-export default Footer;
+export default withRouter(Footer);
