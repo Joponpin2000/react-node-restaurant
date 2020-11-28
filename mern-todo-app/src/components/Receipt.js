@@ -18,12 +18,8 @@ const Receipt = (props) => {
   return (
     <div className="mt-5 pt-5">
       {
-        !receipt
+        receipt
           ?
-          (
-            <div className="text-center my-5"> { showLoading()}</div>
-          )
-          :
           (
             <div className="py-5 alert alert-success">
 
@@ -46,6 +42,16 @@ const Receipt = (props) => {
 
             </div >
           )
+          :
+          (
+            <div className="py-5 alert alert-success">
+
+              <button className="btn btn-success ml-5">
+                <Link to='/' className="text-white">Continue Shopping</Link>
+              </button>
+            </div>
+          )
+
       }
     </div >
   );
