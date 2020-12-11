@@ -1,13 +1,14 @@
 import React from 'react';
+import { Col, Row } from 'react-bootstrap';
 
 function CheckoutSteps(props) {
     return (
-        <div className="checkout-steps col-md-5 mx-auto mt-5">
-            <div className={props.step1 ? 'active' : ''}>Signin</div>
-            <div className={props.step2 ? 'active' : ''}>Shipping</div>
-            <div className={props.step3 ? 'active' : ''}>Payment</div>
-            <div className={props.step4 ? 'active' : ''}>Place Order</div>
-        </div>
+        <Row className="checkout-steps col-md-5 mx-auto mt-5">
+            <Col className={props.step1 ? 'active' : ''}>Signin</Col>
+            <Col className={props.step2 ? 'active' : ''}>Shipping</Col>
+            <Col className={props.step3 ? 'active' : ''}>Payment</Col>
+            <Col className={props.step4 ? 'active' : ''}>Place Order</Col>
+        </Row>
     )
 }
 

@@ -45,7 +45,6 @@ function productDetailsReducer(state = { product: {} }, action) {
 }
 
 function productSaveReducer(state = { product: {} }, action) {
-
     switch (action.type) {
         case PRODUCT_SAVE_REQUEST:
             return {

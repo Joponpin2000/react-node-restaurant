@@ -6,6 +6,7 @@ import { getCookie } from './helpers/cookies';
 import { userRegisterReducer, userSigninReducer } from './reducers/userReducer';
 import { getLocalStorage } from './helpers/localStorage';
 import { categoryListReducer, categorySaveReducer } from './reducers/categoryReducers';
+import { ordersListReducer, orderDeleteReducer } from './reducers/ordersReducer';
 import { paymentReducer } from './reducers/paymentReducer';
 
 
@@ -22,6 +23,8 @@ const reducer = combineReducers({
     userRegister: userRegisterReducer,
     categorySave: categorySaveReducer,
     categoryList: categoryListReducer,
+    ordersList: ordersListReducer,
+    orderDelete: orderDeleteReducer,
     userPayment: paymentReducer,
 })
 

@@ -7,6 +7,7 @@ const bodyParser = require('body-parser');
 const connectDB = require('./database/database');
 const authRoutes = require('./routes/auth');
 const categoryRoutes = require('./routes/category');
+const ordersRoutes = require('./routes/orders');
 const productRoutes = require('./routes/product');
 const AllProductsRoutes = require('./routes/AllProducts');
 const paymentRoutes = require('./routes/payment');
@@ -32,6 +33,7 @@ app.use(cookieParser());
 
 app.use('/api/auth', authRoutes);
 app.use('/api/category', categoryRoutes);
+app.use('/api/orders', ordersRoutes);
 app.use('/api/product', productRoutes);
 app.use('/api/products', AllProductsRoutes);
 app.use(express.static('uploads'));

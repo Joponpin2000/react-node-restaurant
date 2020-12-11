@@ -48,12 +48,12 @@ export const updateProduct = async (formData) => {
     const config = {
         headers: {
             "Content-Type": "application/json",
-            "Authorization": "Bearer " + cookie,
+            "Authorization": "Bearer " + cookie + "",
         },
         withCredentials: true
     }
 
-    const response = await axios.put('/api/product/' + formData.productId, formData, config);
+    const response = await axios.put('/api/product/' + formData.id, formData, config);
 
     return response.data.product;
 }
@@ -76,7 +76,6 @@ export const delProduct = async (productId) => {
 }
 
 export const saveNewProduct = async (formData) => {
-
     let cookie = getCookie("token");
 
     const config = {

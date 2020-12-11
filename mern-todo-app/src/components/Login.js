@@ -8,6 +8,7 @@ import { signin } from '../actions/userActions';
 import { useDispatch, useSelector } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEnvelope, faLock } from '@fortawesome/free-solid-svg-icons';
+import { Button } from 'react-bootstrap';
 
 
 const Login = (props) => {
@@ -48,7 +49,7 @@ const Login = (props) => {
     };
 
     const showLoginForm = () => (
-        <form className="login-form" onSubmit={handleSubmit} noValidate>
+        <form className="login-form grey-bg p-3" onSubmit={handleSubmit} noValidate>
             <div className="form-panel input-group">
                 <div className="input-group-grouped">
                     <span className="input-group-text">
@@ -58,7 +59,7 @@ const Login = (props) => {
                 <input name="email" onChange={(e) => {
                     setEmail(e.target.value);
                     setErrormsg('');
-                }} className="form-control" placeholder="Email address" type="email" />
+                }} autoFocus className="form-control" placeholder="Email address" type="email" />
             </div>
             <div className="form-panel input-group">
                 <div className="input-group-grouped">
@@ -72,7 +73,7 @@ const Login = (props) => {
                 }} className="form-control" placeholder="Password" type="password" />
             </div>
             <div className="form-group">
-                <button className="btn btn-primary btn-block" type="submit">
+                <Button variant="success" className="btn-block" type="submit">
                     {loading && <span className="">
                         <span className="pull-left text-dark">
                             <span className="spinner-border spinner-border-sm" role="status">
@@ -82,10 +83,10 @@ const Login = (props) => {
                     </span>
                     }{' '}
                     Login
-                </button>
+                </Button>
             </div>
-            <p className="text-center text-white">
-                Don't have an account? <Link to={redirect ? "/signup?redirect=" + redirect : "/signup"}>Register here</Link>
+            <p className="text-center">
+                Don't have an account? <Link to={redirect ? "/signup?redirect=" + redirect : "/signup"} ><span className="text-success">Register here</span></Link>
             </p>
         </form>
     );

@@ -8,6 +8,7 @@ import { register } from '../actions/userActions';
 import { useDispatch, useSelector } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEnvelope, faLock, faUser } from '@fortawesome/free-solid-svg-icons';
+import { Button } from 'react-bootstrap';
 
 const Signup = (props) => {
     const [email, setEmail] = useState('');
@@ -50,14 +51,14 @@ const Signup = (props) => {
     };
 
     const showSignupForm = () => (
-        <form className="signup-form" onSubmit={handleSubmit} noValidate>
+        <form className="signup-form grey-bg p-3" onSubmit={handleSubmit} noValidate>
             <div className="form-panel input-group">
                 <div className="input-group-grouped">
                     <span className="input-group-text">
                         <FontAwesomeIcon icon={faUser} />
                     </span>
                 </div>
-                <input name="username" onChange={(e) => setUsername(e.target.value)} className="form-control" placeholder="Username" type="text" />
+                <input name="username" autoFocus onChange={(e) => setUsername(e.target.value)} className="form-control" placeholder="Username" type="text" />
             </div>
             <div className="form-panel input-group">
                 <div className="input-group-grouped">
@@ -84,7 +85,7 @@ const Signup = (props) => {
                 <input name="password2" onChange={(e) => setPassword2(e.target.value)} className="form-control" placeholder="Confirm Password" type="password" />
             </div>
             <div className="form-group">
-                <button name="" className="btn btn-primary btn-block" type="submit">
+                <Button variant="outline-success" className="btn-block" type="submit">
                     {loading && <span className="">
                         <span className="pull-left text-dark">
                             <span className="spinner-border spinner-border-sm" role="status">
@@ -94,10 +95,10 @@ const Signup = (props) => {
                     </span>
                     }{' '}
                     Create Account
-                </button>
+                </Button>
             </div>
-            <p className="text-center text-white">
-                Have an account? <Link to={redirect ? "/login?redirect=" + redirect : "/login"}>Log In</Link>
+            <p className="text-center">
+                Have an account? <Link to={redirect ? "/login?redirect=" + redirect : "/login"}><span className="text-success">Log In</span></Link>
             </p>
         </form>
     )

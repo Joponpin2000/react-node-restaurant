@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { savePayment } from '../actions/cartAction';
 import { useDispatch } from 'react-redux';
 import CheckoutSteps from './CheckoutSteps';
+import { Button } from 'react-bootstrap';
 
 const Payment = (props) => {
     const [paymentMethod, setPaymentMethod] = useState('');
@@ -19,10 +20,10 @@ const Payment = (props) => {
     };
 
     const showPaymentForm = () => (
-        <form className="signup-form mt-5" onSubmit={handleSubmit} noValidate>
+        <form className="signup-form mt-5 grey-bg p-4" onSubmit={handleSubmit} noValidate>
             <div className="form-panel input-group px-3 py-3 bg-light ">
                 <div>
-                    <input name="paymentMethod" onChange={(e) => setPaymentMethod(e.target.value)} value="Paystack" type="radio" />
+                    <input autoFocus name="paymentMethod" onChange={(e) => setPaymentMethod(e.target.value)} value="Paystack" type="radio" />
                     {' '}
                     <label htmlFor="paymentMethod">
                         Paystack
@@ -30,9 +31,9 @@ const Payment = (props) => {
                 </div>
             </div>
             <div className="form-group mt-2">
-                <button name="" className="btn btn-warning btn-block" type="submit">
+                <Button variant="success" className="btn-block" type="submit">
                     Continue
-                </button>
+                </Button>
             </div>
         </form>
     )

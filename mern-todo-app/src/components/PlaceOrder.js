@@ -22,8 +22,11 @@ function PlaceOrderScreen(props) {
         if (!shipping.address) {
             props.history.push('/shipping')
         }
+        if (!userInfo) {
+            props.history.push('/login?redirect=placeorder')
+        }
 
-    }, [payment.paymentMethod, props.history, shipping.address]);
+    }, [payment.paymentMethod, props.history, shipping.address, userInfo]);
 
     const itemsPrice = cartItems.reduce((a, c) => a + c.productPrice * c.qty, 0);
     const shippingPrice = itemsPrice > 100 ? 0 : 10;
@@ -44,7 +47,7 @@ function PlaceOrderScreen(props) {
     }
 
     return (
-        <div className="pt-5">
+        <div className="py-5 grey-bg">
             <CheckoutSteps step1 step2 step3 step4 />
             <Container>
                 <h4>Shipping</h4>
@@ -105,7 +108,7 @@ function PlaceOrderScreen(props) {
                                     <p>Tax: ${taxPrice}</p>
                                     <p>Order Total: <b>${totalPrice}</b></p>
                                 </div>
-                                <Button onClick={placeOrderHandler || alert("Couldn't connect to Paystack")} className="btn btn-warning btn-block">Place Order</Button>
+                                <Button onClick={placeOrderHandler || alert("Couldn't connect to Paystack")} variant="outline-success" className="btn-block">Place Order</Button>
                             </Card.Body>
                         </Card>
                     </Col>

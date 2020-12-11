@@ -8,6 +8,7 @@ import Table from 'react-bootstrap/Table';
 import { useDispatch, useSelector } from 'react-redux';
 import { listProducts, saveProduct, deleteProduct } from '../actions/productActions';
 import { loadCategories, saveCategory } from '../actions/categoryAction';
+import { loadOrders, deleteOrder } from '../actions/ordersAction';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHome, faPlus, faMoneyCheckAlt } from '@fortawesome/free-solid-svg-icons';
 
@@ -16,8 +17,16 @@ const AdminDashboard = (props) => {
 
     const [showCatModal, setShowCatModal] = useState(false);
     const [showProdModal, setShowProdModal] = useState(false);
+    const [showOrders, setShowOrders] = useState(false);
+
     const categoryList = useSelector(state => state.categoryList);
     const { categories } = categoryList;
+
+    const ordersList = useSelector(state => state.ordersList);
+    const { orders } = ordersList;
+    const orderDelete = useSelector(state => state.orderDelete);
+    const { success: successDeleteOrder } = orderDelete;
+
     const [category, setCategory] = useState('');
     const [id, setId] = useState('');
     const [productName, setProductName] = useState('');
@@ -42,8 +51,12 @@ const AdminDashboard = (props) => {
     useEffect(() => {
         dispatch(loadCategories())
         loadCategories();
+
+        dispatch(loadOrders())
+
         dispatch(listProducts())
-    }, [dispatch, successDelete]);
+
+    }, [dispatch, successDelete, successDeleteOrder, successSave, catSuccessSave]);
 
 
     const handleMessages = evt => {
@@ -52,6 +65,7 @@ const AdminDashboard = (props) => {
     };
 
     const handleShowCat = () => setShowCatModal(true);
+
     const handleShowProd = (product) => {
         setShowProdModal(true);
 
@@ -67,6 +81,9 @@ const AdminDashboard = (props) => {
         }
     };
 
+    const handleShowOrders = () => setShowOrders(true);
+
+
     const handleCloseCat = () => {
         setShowCatModal(false);
         handleMessages();
@@ -75,6 +92,10 @@ const AdminDashboard = (props) => {
     const handleCloseProd = () => {
         setShowProdModal(false);
         handleMessages();
+    };
+
+    const handleCloseOrders = () => {
+        setShowOrders(false);
     };
 
     const handleCategorySubmit = evt => {
@@ -97,6 +118,10 @@ const AdminDashboard = (props) => {
 
     const deleteProdHandler = (product) => {
         dispatch(deleteProduct(product._id));
+    }
+
+    const deleteOrderHandler = (id) => {
+        dispatch(deleteOrder(id));
     }
 
     const handleProductSubmit = (evt) => {
@@ -123,13 +148,18 @@ const AdminDashboard = (props) => {
             formData.append("productPrice", productPrice.toString());
             formData.append("productCategory", productCategory);
             formData.append("productQty", productQty.toString());
+
+            // const formData = ({
+            //     id,
+            //     productImage, productName, productDesc, productPrice, productCategory, productQty,
+            // })
             dispatch(saveProduct(formData))
         }
     }
 
 
     const showHeader = () => (
-        <div className="bg-dark text-white py-4 mt-5">
+        <div className="bg-dark text-white pt-5 pb-4 mt-5">
             <div className="container">
                 <div className="row">
                     <div className="col-md-4">
@@ -157,7 +187,7 @@ const AdminDashboard = (props) => {
                         </Button>
                     </div>
                     <div className="col-md-4 my-1">
-                        <Button variant="outline-success" className="btn-block">
+                        <Button variant="outline-success" className="btn-block" onClick={handleShowOrders}>
                             <FontAwesomeIcon icon={faMoneyCheckAlt} /> {' '} View Orders
                         </Button>
                     </div>
@@ -174,7 +204,7 @@ const AdminDashboard = (props) => {
                 </Modal.Header>
                 <Modal.Body>
                     {(errorMsg || catErrorSave || errorSave) && showErrorMsg(errorMsg || catErrorSave || errorSave)}
-                    {(successMsg || catSuccessSave || successSave) && showSuccessMsg(successMsg || catSuccessSave || successSave)}
+                    {(successMsg || catSuccessSave || successSave) && showSuccessMsg("Successful")}
                     {(loadingSave || catLoadingSave) ? (
                         <div className="text-center">{showLoading()}</div>
                     ) : (
@@ -204,7 +234,7 @@ const AdminDashboard = (props) => {
                 </Modal.Header>
                 <Modal.Body>
                     {errorSave && showErrorMsg(errorSave)}
-                    {successSave && showSuccessMsg(successSave)}
+                    {successSave && showSuccessMsg("Successful")}
                     {(loadingSave || catLoadingSave) ? (
                         <div className="text-center">{showLoading()}</div>
                     ) : (
@@ -272,6 +302,49 @@ const AdminDashboard = (props) => {
 
     )
 
+    const showOrdersModal = () => (
+        <Modal show={showOrders} onHide={handleCloseOrders} centered dialogClassName="orders-modal" className="orders-modal">
+            <Modal.Header closeButton>
+                <Modal.Title>Orders</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+                <Fragment>
+
+                    <Table striped bordered hover responsive>
+                        <thead><tr>
+                            <th>#</th>
+                            <th>Name</th>
+                            <th>Amount</th>
+                            <th>Reference</th>
+                            <th>Date</th>
+                            <th>Action</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                            {orders ? orders.map((order, i) => (
+                                <tr key={i}>
+                                    <td>{i}</td>
+                                    <td>{order.fullName}</td>
+                                    <td>{order.amount}</td>
+                                    <td>{order.reference}</td>
+                                    <td>{order.createdAt}</td>
+                                    <td>
+                                        <Button variant="warning">Edit</Button>
+                                        {' '}
+                                        <Button variant="danger" onClick={() => deleteOrderHandler(order._id)}>Delete</Button>
+                                    </td>
+                                </tr>
+                            )) : <div></div>}
+                        </tbody>
+                    </Table>
+                </Fragment>
+            </Modal.Body>
+            <Modal.Footer>
+                <Button onClick={handleCloseOrders}>Close</Button>
+            </Modal.Footer>
+        </Modal >
+    )
+
     const showProductsList = () => (
         <Fragment>
             <h3>Products</h3>
@@ -311,6 +384,7 @@ const AdminDashboard = (props) => {
             {showActionButtons()}
             {showCategoryModal()}
             {showFoodModal()}
+            {showOrdersModal()}
             {showProductsList()}
         </section>
     );

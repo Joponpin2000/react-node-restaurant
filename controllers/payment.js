@@ -7,7 +7,6 @@ require('dotenv').config();
 const secretKey = process.env.SECRET_KEY;
 
 exports.pay = async (req, res) => {
-
     try {
 
         //axios Set up
@@ -37,44 +36,6 @@ exports.pay = async (req, res) => {
                     errorMessage: 'Error occured try again later'
                 })
             })
-
-        // //Initialize payment
-        // const formData = {
-        //     email: req.body.email,
-        //     amount: parseInt(req.body.amount) * 100,
-        // };
-
-        // formData.metadata = {
-        //     fullName: req.body.name,
-        //     // phoneNumber: '487ehwjehwjew',  TODO:// ADD PHONE NUMBER TO SIGNUP DETAILS OF ENTIRE APP
-        // };
-
-        // const options = {
-        //     url: 'https://api.paystack.co/transaction/initialize',
-        //     form: formData,
-        //     headers: {
-        //         authorization: 'Bearer ' + secretKey,
-        //     },
-        // };
-
-        // // Make the request
-        // request.post(options, function (err, response, body) {
-        //     if (err) {
-        //         console.log('here')
-
-        //         return res.status(500).json({
-        //             errorMessage: 'Please try again later'
-        //         });
-        //     } else {
-        //         console.log('moving')
-
-        //         const responseData = JSON.parse(body);
-        //         const { authorization_url } = responseData.data;
-        //         console.log('mov')
-
-        //         return res.status(200).json({ url: authorization_url });
-        //     }
-        // });
 
     } catch (err) {
         return res.status(500).json({
@@ -138,11 +99,6 @@ exports.receipt = async (req, res) => {
         const userRef = req.params.id;
 
         await Payment.findOne({ reference: userRef }, (err, user) => {
-            if (err) {
-                return res.status(500).json({
-                    errorMessage: 'Please try again later'
-                });
-            }
 
             return res.status(200).json({ user: user });
         });

@@ -29,6 +29,7 @@ const getReceipt = (props) => async (dispatch) => {
         });
 
         const user = await getPaymentReceipt(props.match.params.id);
+
         dispatch({
             type: GET_RECEIPT_SUCCESS,
             payload: user,

@@ -108,12 +108,7 @@ exports.delete = async (req, res) => {
     try {
         const deleteProduct = await Product.findById(req.params.id)
         if (deleteProduct) {
-            await deleteProduct.remove((err, res) => {
-                if (err) {
-                    return res.status(500).json({
-                        errorMessage: 'Please try again later'
-                    })
-                }
+            await deleteProduct.remove((err, product) => {
                 return res.json({
                     successMessage: 'Product Deleted'
                 });

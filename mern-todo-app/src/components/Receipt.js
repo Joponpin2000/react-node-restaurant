@@ -2,7 +2,6 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { getReceipt } from '../actions/paymentActions';
-import { showLoading } from '../helpers/loading';
 
 const Receipt = (props) => {
   const dispatch = useDispatch();

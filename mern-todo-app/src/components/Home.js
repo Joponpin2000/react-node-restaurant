@@ -1,12 +1,9 @@
 import React, { Fragment, useEffect } from 'react';
-import { Row, Col, Container, Jumbotron, Card } from 'react-bootstrap';
+import { Row, Col, Container, Card, Carousel, Button } from 'react-bootstrap';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { listProducts } from '../actions/productActions';
 import { showLoading } from '../helpers/loading';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCar, faMoneyCheck, faPizzaSlice } from '@fortawesome/free-solid-svg-icons';
-// import { server } from '../api/url';
 
 const Home = (props) => {
 
@@ -20,72 +17,86 @@ const Home = (props) => {
     }, [dispatch])
 
     return (
-        <div className="mt-2 pt-5">
+        <div className="mt-3 pt-5">
             {
                 loading ? (
                     <div className="text-center mx-5 my-5" > {showLoading()}</div>)
                     :
                     error ? (<div>{error}</div>) : (
-                        < Fragment >
-                            <Jumbotron id="home-bg" className="mt-3 pt-5">
-                                <Container>
-                                    <h1 className="text-white text-center display-4 mt-5">Baked Italian <b className="nc">pizzas</b></h1>
-                                    <Row className="text-white text-center px-5 mt-5">
-                                        <Col md="4">
-                                            <FontAwesomeIcon icon={faPizzaSlice} size="2x" className="yc mb-2" />
-                                            <h3>Hot and Yummy</h3>
-                                            <p className="help-block">Suspendisse amet ullamco</p>
-                                        </Col>
-                                        <Col md="4" className="my-5">
-                                            <FontAwesomeIcon icon={faCar} size="3x" className="yc mb-2" />
-                                            <h3>Fast Delivery</h3>
-                                            <p className="help-block">Suspendisse amet ullamco</p>
-                                        </Col>
-                                        <Col md="4">
-                                            <FontAwesomeIcon icon={faMoneyCheck} size="2x" className="yc mb-2" />
-                                            <h3>E-Payment</h3>
-                                            <p className="help-block">Suspendisse amet ullamco</p>
-                                        </Col>
-                                    </Row>
-                                </Container>
-                            </Jumbotron>
+                        < div className="grey-bg">
+                            <Carousel >
+                                <Carousel.Item>
+                                    <img className="d-block w-100 img-height" src={require("./images/hbg1.jpg")} alt="First slide" />
+                                    <Carousel.Caption>
+                                        <div className="text-center bg-success py-5 caption-box">
+                                            <h1 className="mb-3 display-4"><b>Pizzards</b>
+                                            </h1>
+                                            <h3 ><i>..one thousand flavors in one place.</i></h3>
+                                        </div>
+                                    </Carousel.Caption>
+                                </Carousel.Item>
+                                <Carousel.Item>
+                                    <img className="d-block w-100 img-height" src={require("./images/hbg.jpg")} alt="First slide" />
+                                    <Carousel.Caption>
+                                        <div className="text-center bg-success py-5 caption-box">
+                                            <h1 className="mb-3 display-4">Baked Italian Pizzas</h1>
+                                            <h3><i>..at your fingertips.</i></h3>
+                                        </div>
+                                    </Carousel.Caption>
+                                </Carousel.Item>
+                                <Carousel.Item>
+                                    <img className="d-block w-100 img-height" src={require("./images/sbg.jpg")} alt="First slide" />
+                                    <Carousel.Caption>
+                                        <div className="text-center bg-success py-5 caption-box">
+                                            <h1 className="mb-3 display-4">Welcome to Pizzards</h1>
+                                            <h3><i>..hot and yummy with fast delivery</i></h3>
+                                        </div>
+                                    </Carousel.Caption>
+                                </Carousel.Item>
+                            </Carousel>
+
                             <Container>
-                                <h3 className="mb-4"><b>Popular Meals</b></h3>
-                                <Row>
-                                    {
-                                        (products) ? (
+                                {products
+                                    ?
+                                    (
+                                        <Fragment>
+                                            <h1 className="text-center mt-5 mb-2 subtitle">Menu</h1>
+                                            <h4 className="text-center mb-2 help-block"> Discover our menu.</h4>
+                                            <hr className="mb-4" />
+                                            <Row>
+                                                {
+                                                    products.map((product, i) =>
+                                                        (product && product.productImage !== undefined) && (
 
-                                            products.map((product, i) =>
-                                                (product && product.productImage !== undefined) && (
-
-                                                    <Fragment key={i}>
-                                                        <Col md='4'>
-                                                            <Card className="mb-3">
-                                                                <Link to={"/product/" + product._id}>
-                                                                    <Card.Img height='250' src={require(`./images/${product.productName}.jpg`)} alt={product.productName} />
-                                                                </Link>
-                                                                <Card.Body>
-                                                                    <Card.Title>
-                                                                        <Link to={"/product/" + product._id} className="text-dark"><b>{product.productName}</b></Link>
-                                                                        {' '} - {' '} <span className="pull-right"> ${product.productPrice}</span>
-                                                                    </Card.Title>
-                                                                    <Card.Text>
-                                                                        {product.productDesc}
-                                                                    </Card.Text>
-                                                                </Card.Body>
-                                                            </Card>
-                                                        </Col>
-                                                    </Fragment>
-                                                )
-                                            )
-                                        )
-                                            : (
-                                                <div className="hidden">Unavailable</div>
-                                            )
-                                    }
-                                </Row>
+                                                            <Col md='3' key={i}>
+                                                                <Card className="mb-5" border="80">
+                                                                    <Link to={"/product/" + product._id}>
+                                                                        <Card.Img height='200' src={require(`./images/${product.productName}.jpg`)} alt={product.productName} />
+                                                                    </Link>
+                                                                    <Card.Body>
+                                                                        <Card.Title className="text-center">
+                                                                            <Link to={"/product/" + product._id} className="text-dark"><b>{product.productName}</b></Link>
+                                                                            {' '} - {' '}
+                                                                        </Card.Title>
+                                                                        <Card.Text className="text-center mb-3">
+                                                                            <Link to={"/product/" + product._id}>
+                                                                                <Button variant="success" className="px-5 price-btn"> $ {product.productPrice}</Button>
+                                                                            </Link>
+                                                                        </Card.Text>
+                                                                    </Card.Body>
+                                                                </Card>
+                                                            </Col>
+                                                        )
+                                                    )
+                                                }
+                                            </Row>
+                                        </Fragment>
+                                    )
+                                    :
+                                    <div className="hidden mt-5 pt-5 mb-3">Unavailable</div>
+                                }
                             </Container>
-                        </Fragment >
+                        </div >
                     )
             }
         </div>

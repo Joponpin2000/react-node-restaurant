@@ -2,6 +2,48 @@
 color: white;
 }
 
+.navbar-brand:hover {
+    color: #28a745 !important;
+}
+
+.nav-link {
+    margin-right: 20px;
+    font-weight: 600;
+    color: black !important;
+}
+
+.nav-link:hover {
+    font-weight: 700 !important;
+    color: #28a745 !important;
+}
+
+.footer-nav-link {
+    color: #28a745 !important;
+
+}
+
+.carousel-caption {
+    top: 50%;
+    transform: translateY(-50%);
+    bottom: initial;
+}
+
+.caption-box {
+    border: 10px solid #bbb;
+}
+
+.footer-nav-link:hover {
+    color: #28a745 !important;
+}
+
+.img-height {
+    height: 90vh;
+}
+
+.grey-bg {
+    background-color: #eee;
+}
+
 .signup-container {
     background-image: url(./images/sbg.jpg);
     background-size: cover;
@@ -37,9 +79,25 @@ color: white;
     background-position: center;
     opacity: 1;
     height: auto;
-
 }
 
+.price-btn {
+    border-radius: 0px;
+    height: 46px;
+}
+
+.price-btn:hover {
+    background-color: #28a745 !important;
+}
+
+.display-1 {
+    word-wrap: break-word;
+}
+
+.orders-modal {
+    width: 60vw !important;
+    max-width: 60vw !important;
+}
 .help-block {
     opacity: 0.7;
 }
@@ -61,8 +119,8 @@ color: white;
 }
 
 .checkout-steps>div.active {
-    border-top: .3rem #f08000 solid;
-    color: #f08000;
+    border-top: .3rem #28a745 solid;
+    color: #28a745;
 }
 
 footer {

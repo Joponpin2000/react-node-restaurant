@@ -40,6 +40,7 @@ class App extends Component {
           <Route path="/cart/:id?" component={CartScreen} />
           <Route component={NotFound} />
         </Switch>
+
         <Footer />
       </Router>
     );

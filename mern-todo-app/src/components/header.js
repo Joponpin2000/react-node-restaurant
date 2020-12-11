@@ -3,7 +3,6 @@ import { withRouter } from 'react-router-dom';
 import { isAuthenticated, logout } from '../helpers/auth';
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
-import Container from 'react-bootstrap/Container';
 import { getNumbers } from '../actions/getAction';
 import { useSelector } from 'react-redux';
 
@@ -22,44 +21,43 @@ const Header = (props) => {
 
 
     const showNavigation = () => (
-
-        <Navbar bg="dark" variant="light" expand="md" fixed="top">
-            <Container>
-                <Navbar.Brand href="/" className="text-white my-2"> Pizzards</Navbar.Brand>
+        <Navbar bg="white" expand="md" fixed="top">
+            {/* <Container> */}
+                <Navbar.Brand href="/" className="text-success my-2 pl-3"><img src={require("./images/logo-3.png")} height="40" alt="Logo img" /></Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav text-white" />
                 <Navbar.Collapse id="basic-navbar-nav" className="justify-content-end">
-                    <Nav>
+                    <Nav >
                         {!isAuthenticated() && (
                             <Fragment>
-                                <Nav.Link href="/" className="text-white">Home</Nav.Link>
-                                <Nav.Link href="/signup" className="text-white">Signup</Nav.Link>
-                                <Nav.Link href="/login" className="text-white">Login</Nav.Link>
+                                <Nav.Link href="/">Home</Nav.Link>
+                                <Nav.Link href="/signup">Signup</Nav.Link>
+                                <Nav.Link href="/login">Login</Nav.Link>
                             </Fragment>
                         )}
                         {isAuthenticated() && isAuthenticated().role === 0 && (
                             <Fragment>
-                                <Nav.Link href="/user/dashboard" className="text-white">Dashboard</Nav.Link>
-                                <Nav.Link href="/cart" className="text-white">Cart <span></span></Nav.Link>
+                                <Nav.Link href="/user/dashboard">Dashboard</Nav.Link>
+                                <Nav.Link href="/cart">Cart <span></span></Nav.Link>
                             </Fragment>
                         )}
                         {isAuthenticated() && isAuthenticated().role === 1 && (
                             <Fragment>
-                                <Nav.Link href="/admin/dashboard" className="text-white">Dashboard</Nav.Link>
+                                <Nav.Link href="/admin/dashboard">Dashboard</Nav.Link>
                             </Fragment>
                         )}
                         {userInfo && isAuthenticated() && (
                             <Fragment>
-                                <Nav.Link className="text-white" onClick={handleLogout}>Logout</Nav.Link>
+                                <Nav.Link onClick={handleLogout}>Logout</Nav.Link>
                             </Fragment>
                         )}
                     </Nav>
                 </Navbar.Collapse>
-            </Container>
+            {/* </Container> */}
         </Navbar >
     );
 
     return (
-        <header id="header">
+        <header id="mu-header">
             {showNavigation()}
         </header>
     );

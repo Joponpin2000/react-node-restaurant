@@ -10,15 +10,25 @@
     font-family: Roboto;
 }
 
-a {
-    color: rgba(233, 217, 68, 0.795);
-    text-decoration: none;
+* {
+    letter-spacing: 1px;
 }
 
+a {
+    text-decoration: none;
+    color: #28a745 !important;
+}
+
+a:hover {
+    text-decoration: none;
+}
 .nc {
     color: rgba(233, 217, 68, 0.795);
 }
-
+.tangerine {
+    color: #f3c910;
+    font-weight: bolder;
+}
 .yc {
     color: rgba(233, 217, 68, 0.795);
 }

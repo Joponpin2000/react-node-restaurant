@@ -9,6 +9,7 @@ exports.authenticateJWT = (req, res, next) => {
 
     try {
         const token = req.headers.authorization;
+
         const onlyToken = token.slice(7, token.length);
 
         if (!token) {

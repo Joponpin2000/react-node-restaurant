@@ -4,6 +4,7 @@ import { saveShipping } from '../actions/cartAction';
 import { useDispatch } from 'react-redux';
 import { showErrorMsg } from '../helpers/message';
 import CheckoutSteps from './CheckoutSteps';
+import { Button } from 'react-bootstrap';
 
 const Shipping = (props) => {
     const [address, setAddress] = useState('');
@@ -35,11 +36,11 @@ const Shipping = (props) => {
     };
 
     const showShippingForm = () => (
-        <form className="signup-form" onSubmit={handleSubmit} noValidate>
+        <form className="signup-form grey-bg p-4" onSubmit={handleSubmit} noValidate>
             <div className="form-panel input-group">
                 <div className="input-group-grouped">
                 </div>
-                <input name="address" onChange={(e) => setAddress(e.target.value)} className="form-control" placeholder="Address" type="text" />
+                <input autoFocus name="address" onChange={(e) => setAddress(e.target.value)} className="form-control" placeholder="Address" type="text" />
             </div>
             <div className="form-panel input-group">
                 <div className="input-group-grouped">
@@ -57,9 +58,9 @@ const Shipping = (props) => {
                 <input name="country" onChange={(e) => setCountry(e.target.value)} className="form-control" placeholder="Country" type="text" />
             </div>
             <div className="form-group">
-                <button name="" className="btn btn-warning btn-block" type="submit">
+                <Button variant="success" className="btn-block" type="submit">
                     Continue
-                </button>
+                </Button>
             </div>
         </form>
     )

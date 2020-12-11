@@ -29,9 +29,10 @@ function CartScreen(props) {
 
     return (
         <Fragment>
-            <Container className="mt-5 pt-5">
+            <div className="grey-bg">
+            <Container className="mt-5 py-5">
                 <h4 className="my-4">Shopping Cart</h4>
-                <Link to="/" className="text-dark">Back to home</Link>
+                <Link to="/" className="text-success">Back to home</Link>
                 {
                     cartItems.length === 0
                         ?
@@ -68,7 +69,7 @@ function CartScreen(props) {
                                                                             <option key={x + 1} value={x + 1}>{x + 1}</option>
                                                                         )}
                                                                     </select>
-                                                                    <Button type="button" onClick={() => removeFromCartHandler(item.productId)} className="btn btn-warning">delete</Button>
+                                                                    <Button type="button" onClick={() => removeFromCartHandler(item.productId)} variant="success">delete</Button>
                                                                 </Card.Body>
                                                             </Card>
                                                         </Col>
@@ -88,7 +89,7 @@ function CartScreen(props) {
                                                             ${cartItems.reduce((a, c) => Math.round(a + c.productPrice * c.qty), 0)}
                                         </Card.Text>
                                         {
-                                            <Button type="submit" onClick={checkoutHandler} className="btn btn-warning btn-block" disabled={cartItems.length === 0}>Proceed to Checkout</Button>
+                                            <Button type="submit" onClick={checkoutHandler} variant="outline-success" className="btn-block" disabled={cartItems.length === 0}>Proceed to Checkout</Button>
                                         }
                                     </Card.Body>
                                 </Card>
@@ -96,6 +97,7 @@ function CartScreen(props) {
                         </Row>
                 }
             </Container>
+            </div>
         </Fragment>
     )
 }
