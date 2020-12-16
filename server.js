@@ -11,6 +11,9 @@ const ordersRoutes = require('./routes/orders');
 const productRoutes = require('./routes/product');
 const AllProductsRoutes = require('./routes/AllProducts');
 const paymentRoutes = require('./routes/payment');
+const searchRoutes = require('./routes/search');
+const https = require('https');
+const fs = require('fs');
 
 const paymentController = require('./controllers/payment');
 
@@ -38,6 +41,7 @@ app.use('/api/product', productRoutes);
 app.use('/api/products', AllProductsRoutes);
 app.use(express.static('uploads'));
 app.use('/api/paystack', paymentRoutes);
+app.use('/api/search', searchRoutes);
 
 
 app.use(express.static(path.join(__dirname, './mern-todo-app/build')));
@@ -54,4 +58,14 @@ connectDB();
 
 const PORT = process.env.PORT || 4000;
 
-app.listen(PORT, () => console.log(`Server is running here: http://localhost:${PORT}`));
+// app.listen(PORT, () => console.log(`Server is running here: http://localhost:${PORT}`));
+
+const options = {
+    key: fs.readFileSync('key.pem', 'utf8'),
+    cert: fs.readFileSync('cert.pem', 'utf8')
+};
+
+https.createServer(options, app).listen(PORT, function (error) {
+    if (error) return console.error(error.message);
+    console.log(`Server running on port ${PORT}`);
+});
