@@ -19,6 +19,7 @@ exports.pay = async (req, res) => {
         });
 
         const form = _.pick(req.body, ['amount', 'email', 'name']);
+        
         form.metadata = {
             full_name: form.name
         }

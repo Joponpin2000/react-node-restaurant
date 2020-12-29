@@ -44,6 +44,26 @@ color: white;
     background-color: #eee;
 }
 
+.b-g {
+    background-color: #fff;
+    letter-spacing: 10 !important;
+    line-height: 35px;
+    font-weight: 400;
+}
+
+#sideimage {
+    height: 100%;
+    width: 100%;
+}
+
+.contact {
+    background-image: url(./images/bg.png);
+}
+
+.cent {
+    margin: 0 auto;
+}
+
 .signup-container {
     background-image: url(./images/sbg.jpg);
     background-size: cover;

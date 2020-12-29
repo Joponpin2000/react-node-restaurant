@@ -15,7 +15,6 @@ function Footer(props) {
 
         <footer>
             <Container>
-                <h1 className="text-center mt-5 mb-3 subtitle">Get In Touch</h1>
                 <hr className="mb-4"/>
                 <Row>
                     <Col md='3' lg='3' className="mb-5">

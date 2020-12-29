@@ -8,6 +8,7 @@ import { getLocalStorage } from './helpers/localStorage';
 import { categoryListReducer, categorySaveReducer } from './reducers/categoryReducers';
 import { ordersListReducer, orderDeleteReducer } from './reducers/ordersReducer';
 import { paymentReducer } from './reducers/paymentReducer';
+import { contactSendReducer } from './reducers/contactReducer';
 
 
 const cartItems = getCookie("cartItems") || [];
@@ -26,6 +27,7 @@ const reducer = combineReducers({
     ordersList: ordersListReducer,
     orderDelete: orderDeleteReducer,
     userPayment: paymentReducer,
+    contact: contactSendReducer,
 })
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
