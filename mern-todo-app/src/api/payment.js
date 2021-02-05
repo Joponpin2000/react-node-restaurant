@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { getCookie } from '../helpers/cookies';
+import { server } from './url';
 
 export const pay = async (paymentData) => {
     let cookie = getCookie("token");
@@ -12,7 +13,7 @@ export const pay = async (paymentData) => {
         withCredentials: true
     }
 
-    const response = await axios.post('/api/paystack/pay', paymentData, config);
+    const response = await axios.post(server + '/api/paystack/pay', paymentData, config);
 
     return response.data.url;
 }
@@ -28,7 +29,7 @@ export const verify = async (reference) => {
         withCredentials: true
     }
 
-    const response = await axios.get('/api/paystack/callback?ref=' + reference, config);
+    const response = await axios.get(server + '/api/paystack/callback?ref=' + reference, config);
 
     return response.data.url;
 }
@@ -45,7 +46,7 @@ export const getPaymentReceipt = async (id) => {
         withCredentials: true
     }
 
-    const response = await axios.get('/payment-success/' + id, config);
+    const response = await axios.get(server + '/payment-success/' + id, config);
 
     return response.data.user;
 }

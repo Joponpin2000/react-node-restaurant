@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { getCookie } from '../helpers/cookies';
+import { server } from './url';
 
 export const createCategory = async (formData) => {
     let cookie = getCookie("token");
@@ -11,7 +12,7 @@ export const createCategory = async (formData) => {
         withCredentials: true
     }
 
-    const response = await axios.post('/api/category', formData, config);
+    const response = await axios.post(server + '/api/category', formData, config);
     return response;
 }
 
@@ -24,7 +25,7 @@ export const getCategories = async () => {
         },
         withCredentials: true
     }
-    const response = await axios.get('/api/category', config);
+    const response = await axios.get(server + '/api/category', config);
 
     return response.data.categories;
 }
@@ -39,6 +40,6 @@ export const saveNewCategory = async (category) => {
         withCredentials: true
     }
 
-    const response = await axios.post('/api/category', category, config);
+    const response = await axios.post(server + '/api/category', category, config);
     return response.data.category;
 }

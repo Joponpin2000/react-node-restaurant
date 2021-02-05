@@ -5,8 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node server.js",
-    "start-server": "nodemon server.js",
-    "start-client": "npm start --prefix mern-todo-app"
+    "start-server": "nodemon server.js"
   },
   "keywords": [],
   "author": "",

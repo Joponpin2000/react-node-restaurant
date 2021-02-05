@@ -40,12 +40,15 @@ app.use('/api/category', categoryRoutes);
 app.use('/api/orders', ordersRoutes);
 app.use('/api/product', productRoutes);
 app.use('/api/products', AllProductsRoutes);
-app.use(express.static('uploads'));
 app.use('/api/paystack', paymentRoutes);
 app.use('/api/search', searchRoutes);
 app.use('/api/contact', contactRoutes);
 app.use(express.static('uploads'));
 
+app.get('/', (req, res) => {
+    console.log("Home")
+    res.json({message: "home"})
+});
 
 // app.use(express.static(path.join(__dirname, './mern-todo-app/build')));
 

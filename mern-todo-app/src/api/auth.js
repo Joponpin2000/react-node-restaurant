@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { server } from './url';
 
 export const signup = async (data) => {
     const config = {
@@ -6,7 +7,7 @@ export const signup = async (data) => {
             'Content-Type': 'application/json',
         }
     }
-    const response = await axios.post('/api/auth/signup', data, config);
+    const response = await axios.post(server + '/api/auth/signup', data, config);
 
     return response;
 }
@@ -17,7 +18,7 @@ export const login = async (data) => {
             'Content-Type': 'application/json',
         }
     }
-    const response = await axios.post('/api/auth/login', data, config);
+    const response = await axios.post(server + '/api/auth/login', data, config);
 
     return response;
 }
@@ -29,7 +30,7 @@ export const signInUser = async (data) => {
             'Content-Type': 'application/json',
         }
     }
-    const response = await axios.post('/api/auth/login', data, config);
+    const response = await axios.post(server + '/api/auth/login', data, config);
     return response;
 }
 
@@ -40,7 +41,7 @@ export const signUpUser = async (data) => {
             'Content-Type': 'application/json',
         }
     }
-    const response = await axios.post('/api/auth/signup', data, config);
+    const response = await axios.post(server + '/api/auth/signup', data, config);
 
     return response;
 }

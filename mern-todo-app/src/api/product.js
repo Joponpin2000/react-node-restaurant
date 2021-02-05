@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { getCookie } from '../helpers/cookies';
+import { server } from './url';
 
 export const createProduct = async (formData) => {
 
@@ -13,7 +14,7 @@ export const createProduct = async (formData) => {
         withCredentials: true
     }
 
-    const response = await axios.post('/api/product', formData, config);
+    const response = await axios.post(server + '/api/product', formData, config);
 
     return response;
 }
@@ -26,7 +27,7 @@ export const fetchProducts = async () => {
         },
     }
 
-    const response = await axios.get('/api/products', config);
+    const response = await axios.get(server + '/api/products', config);
     return response.data.products;
 }
 
@@ -37,7 +38,7 @@ export const fetchProductdetails = async (productId) => {
         },
     }
 
-    const response = await axios.get('/api/products/' + productId, config);
+    const response = await axios.get(server + '/api/products/' + productId, config);
     return response.data.product;
 }
 
@@ -53,7 +54,7 @@ export const updateProduct = async (formData) => {
         withCredentials: true
     }
 
-    const response = await axios.put('/api/product/' + formData.id, formData, config);
+    const response = await axios.put(server + '/api/product/' + formData.id, formData, config);
 
     return response.data.product;
 }
@@ -70,7 +71,7 @@ export const delProduct = async (productId) => {
         withCredentials: true
     }
 
-    const response = await axios.delete('/api/product/' + productId, config);
+    const response = await axios.delete(server + '/api/product/' + productId, config);
 
     return response.data.product;
 }
@@ -86,7 +87,7 @@ export const saveNewProduct = async (formData) => {
         withCredentials: true
     }
 
-    const response = await axios.post('/api/product', formData, config);
+    const response = await axios.post(server + '/api/product', formData, config);
 
     return response.data.product;
 }
