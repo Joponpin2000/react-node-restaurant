@@ -22,7 +22,6 @@ const Header = (props) => {
 
     const showNavigation = () => (
         <Navbar bg="white" expand="md" fixed="top">
-            {/* <Container> */}
                 <Navbar.Brand href="/" className="text-success my-2 pl-3"><img src={require("./images/logo-3.png")} height="40" alt="Logo img" /></Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav text-white" />
                 <Navbar.Collapse id="basic-navbar-nav" className="justify-content-end">
@@ -52,7 +51,6 @@ const Header = (props) => {
                         )}
                     </Nav>
                 </Navbar.Collapse>
-            {/* </Container> */}
         </Navbar >
     );
 

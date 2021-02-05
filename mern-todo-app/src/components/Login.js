@@ -97,7 +97,6 @@ const Login = (props) => {
             <div className="row px-3 vh-100">
                 <div className="col-md-5 mx-auto align-self-center pt-5">
                     {(errormsg || error) && showErrorMsg(errormsg || error)}
-                    {/* {errormsg && showErrorMsg(errormsg)} */}
                     {showLoginForm()}
                 </div>
             </div>

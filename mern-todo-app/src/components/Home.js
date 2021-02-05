@@ -13,6 +13,7 @@ const Home = (props) => {
 
     const productList = useSelector(state => state.productList);
     const { products, loading, error } = productList;
+    console.log(products)
 
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
@@ -21,7 +22,7 @@ const Home = (props) => {
     const dispatch = useDispatch();
     useEffect(() => {
 
-        dispatch(listProducts())
+        dispatch(listProducts());
 
     }, [dispatch])
     const handleSubmit = e => {
@@ -88,9 +89,8 @@ const Home = (props) => {
                                             <p className="py-3 px-4 b-g text-white bg-dark">
                                                 We look to provide the best possible value to our customers who desire great tasting pizza.
                                         </p>
-                                            <Button className="p-3 my-2" variant="success">Contact Us</Button>
                                         </Col>
-                                        <Col md="6" className="bg-dark mt-5">
+                                        <Col md="6" className="mt-5">
                                             <img src={SideImage} id="sideimage" alt="" />
                                         </Col>
                                     </Row>
@@ -112,7 +112,9 @@ const Home = (props) => {
                                                                 <Col md='3' key={i}>
                                                                     <Card className="mb-5" border="80">
                                                                         <Link to={"/product/" + product._id}>
-                                                                            <Card.Img height='200' src={require(`./images/${product.productName}.jpg`)} alt={product.productName} />
+                                                                            <Card.Img height='200'
+                                                                             src={"/" + product.productImage} 
+                                                                             alt={product.productName} />
                                                                         </Link>
                                                                         <Card.Body>
                                                                             <Card.Title className="text-center">

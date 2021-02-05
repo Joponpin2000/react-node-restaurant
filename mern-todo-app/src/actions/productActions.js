@@ -8,6 +8,7 @@ const listProducts = () => async (dispatch) => {
             type: PRODUCT_LIST_REQUEST
         });
         const products = await fetchProducts();
+
         dispatch({
             type: PRODUCT_LIST_SUCCESS,
             payload: products

@@ -49,7 +49,7 @@ function CartScreen(props) {
                                                     <Fragment>
                                                         <Col md='6'>
                                                             <Card>
-                                                                <Card.Img className="product-image" src={require(`./images/${item.productName}.jpg`)} alt={item.productName} />
+                                                                <Card.Img className="product-image" src={"/" + item.productImage} />
                                                             </Card>
                                                         </Col>
                                                         <Col md='6'>

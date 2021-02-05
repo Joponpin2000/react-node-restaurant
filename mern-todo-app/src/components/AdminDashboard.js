@@ -58,7 +58,6 @@ const AdminDashboard = (props) => {
 
     }, [dispatch, successDelete, successDeleteOrder, successSave, catSuccessSave]);
 
-
     const handleMessages = evt => {
         setErrorMsg('');
         setSuccessMsg('');

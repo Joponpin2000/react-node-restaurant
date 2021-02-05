@@ -22,15 +22,16 @@ exports.signupController = async (req, res) => {
 
         const salt = await bcrypt.genSalt(10);
         newUser.password = await bcrypt.hash(password, salt);
+
         await newUser.save();
 
         res.json({
-            successMessage: 'Registration success. Please signin.'
+            successMessage: 'Registration successful. Please signin.'
         });
 
     } catch (err) {
         res.status(500).json({
-            errorMessage: 'Server error'
+            errorMessage: 'Server error. Please try again.'
         });
 
     }
@@ -43,7 +44,7 @@ exports.loginController = async (req, res) => {
 
     try {
         const user = await User.findOne({ email });
-
+        
         if (!user) {
             return res.status(400).json({
                 errorMessage: 'Invalid credentials',
