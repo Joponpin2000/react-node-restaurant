@@ -64,14 +64,14 @@ connectDB();
 
 const PORT = process.env.PORT || 4000;
 
-// app.listen(PORT, () => console.log(`Server is running here: http://localhost:${PORT}`));
+app.listen(PORT, () => console.log(`Server is running here: http://localhost:${PORT}`));
 
-const options = {
-    key: fs.readFileSync('key.pem', 'utf8'),
-    cert: fs.readFileSync('cert.pem', 'utf8')
-};
+// const options = {
+//     key: fs.readFileSync('key.pem', 'utf8'),
+//     cert: fs.readFileSync('cert.pem', 'utf8')
+// };
 
-https.createServer(options, app).listen(PORT, function (error) {
-    if (error) return console.error(error.message);
-    console.log(`Server running on port ${PORT}`);
-});
+// https.createServer(options, app).listen(PORT, function (error) {
+//     if (error) return console.error(error.message);
+//     console.log(`Server running on port ${PORT}`);
+// });
