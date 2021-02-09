@@ -27,7 +27,9 @@ export const fetchProducts = async () => {
         },
     }
 
-    const response = await axios.get(server + '/api/products', config);
+    const response = await axios.get(`${server}/api/products`, config);
+    console.log(response)
+    console.log(response.data.products)
     return response.data.products;
 }
 

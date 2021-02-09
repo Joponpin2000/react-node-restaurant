@@ -6,6 +6,7 @@ import isEmail from 'validator/lib/isEmail';
 import isEmpty from 'validator/lib/isEmpty';
 import { sendMessage } from '../actions/contactAction';
 import { listProducts } from '../actions/productActions';
+import { server } from '../api/url';
 import { showLoading } from '../helpers/loading';
 import SideImage from './images/side.png';
 
@@ -24,7 +25,8 @@ const Home = (props) => {
 
         dispatch(listProducts());
 
-    }, [dispatch])
+    }, [dispatch]);
+
     const handleSubmit = e => {
         e.preventDefault();
 

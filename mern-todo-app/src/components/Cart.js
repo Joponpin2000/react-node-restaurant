@@ -3,7 +3,6 @@ import { Button, Card, Col, Container, Row } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { addToCart, removeFromCart } from '../actions/cartAction';
-// import { server } from '../api/url';
 
 function CartScreen(props) {
     const productId = props.match.params.id;

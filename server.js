@@ -23,13 +23,14 @@ app.use(bodyParser.urlencoded({
 })
 );
 
-// app.use(cors({
-//     origin: [
-//         `http://localhost:3000`,
-//     ],
-//     credentials: true
-// })
-// );
+app.use(cors({
+    origin: [
+        `https://pizzards.netlify.app`,
+        // `http://localhost:3000`,
+    ],
+    credentials: true
+})
+);
 
 app.use(cors());
 app.use(express.json());
@@ -47,7 +48,7 @@ app.use(express.static('uploads'));
 
 app.get('/', (req, res) => {
     console.log("Home")
-    res.json({message: "home"})
+    res.json({ message: "home" })
 });
 
 // app.use(express.static(path.join(__dirname, './mern-todo-app/build')));
@@ -64,7 +65,7 @@ connectDB();
 
 const PORT = process.env.PORT || 4000;
 
-app.listen(PORT, () => console.log(`Server is running here: http://localhost:${PORT}`));
+app.listen(PORT, () => console.log(`Server is running on port: ${PORT}`));
 
 // const options = {
 //     key: fs.readFileSync('key.pem', 'utf8'),
