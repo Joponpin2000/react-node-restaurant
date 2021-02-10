@@ -23,14 +23,14 @@ app.use(bodyParser.urlencoded({
 })
 );
 
-app.use(cors({
-    origin: [
-        `https://pizzards.netlify.app`,
-        // `http://localhost:3000`,
-    ],
-    credentials: true
-})
-);
+// app.use(cors({
+//     origin: [
+//         `https://pizzards.netlify.app`,
+//         // `http://localhost:3000`,
+//     ],
+//     credentials: true
+// })
+// );
 
 app.use(cors());
 app.use(express.json());
@@ -47,8 +47,8 @@ app.use('/api/contact', contactRoutes);
 app.use(express.static('uploads'));
 
 app.get('/', (req, res) => {
-    console.log("Home")
-    res.json({ message: "home" })
+    console.log("Pizzards api default endpoint")
+    res.json({ message: "Pizzards api default endpoint" })
 });
 
 // app.use(express.static(path.join(__dirname, './mern-todo-app/build')));
