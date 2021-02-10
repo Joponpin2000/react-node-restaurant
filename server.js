@@ -46,11 +46,6 @@ app.use('/api/search', searchRoutes);
 app.use('/api/contact', contactRoutes);
 app.use(express.static('uploads'));
 
-app.get('/', (req, res) => {
-    console.log("Pizzards api default endpoint")
-    res.json({ message: "Pizzards api default endpoint" })
-});
-
 // app.use(express.static(path.join(__dirname, './mern-todo-app/build')));
 
 // app.get('*', (req, res) => {
