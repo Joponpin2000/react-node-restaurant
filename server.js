@@ -52,7 +52,6 @@ app.use(express.static('uploads'));
 //     res.sendFile(path.resolve(__dirname, './mern-todo-app/build', "index.html"));
 // });
 
-
 app.get('/payment-success/:id', paymentController.receipt);
 
 

@@ -8,7 +8,6 @@ const secretKey = process.env.SECRET_KEY;
 
 exports.pay = async (req, res) => {
     try {
-
         //axios Set up
         const Axios = axios.create({
             headers: {
@@ -19,7 +18,7 @@ exports.pay = async (req, res) => {
         });
 
         const form = _.pick(req.body, ['amount', 'email', 'name']);
-        
+
         form.metadata = {
             full_name: form.name
         }
@@ -48,7 +47,6 @@ exports.pay = async (req, res) => {
 exports.verify = async (req, res) => {
     try {
         const ref = req.query.ref;
-
         const url = 'https://api.paystack.co/transaction/verify/' + encodeURIComponent(ref);
 
         //axios Set up
@@ -62,20 +60,26 @@ exports.verify = async (req, res) => {
 
         Axios.get(url)
             .then((response) => {
+
                 let { id, reference, amount, customer } = response.data.data;
                 const { email } = customer;
                 const fullName = email.split("@")[0];
                 amount = (amount / 100) / 400;
+
                 const newPayment = new Payment({ fullName, amount, reference });
                 newPayment.save()
                     .then((payment) => {
                         if (!payment) {
                             return res.redirect('/error');
                         }
-                        return res.status(200).json({ url: "/payment-success/" + reference });
+                        return res.status(200).json(
+                            {
+                                url: "/payment-success/" + reference,
+                                successMessage: "Payment Successful\nYour purchase has been saved"
+                            }
+                        );
                     })
                     .catch((e) => {
-                        console.log('database')
                         res.redirect('/error');
                     })
             })
