@@ -31,7 +31,6 @@ exports.pay = async (req, res) => {
                 return res.status(200).json({ url: auth_url });
             })
             .catch((error) => {
-
                 return res.status(500).json({
                     errorMessage: 'Error occured try again later'
                 })

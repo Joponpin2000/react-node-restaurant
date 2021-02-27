@@ -30,11 +30,13 @@ exports.readAll = async (req, res) => {
     try {
         const categories = await Category.find({});
 
-        res.status(200).json({
-            categories,
-        });
+        if (categories) {
+            return res.status(200).json({
+                categories
+            });
+        }
     } catch (err) {
-        res.status(500).json({
+        return res.status(500).json({
             errorMessage: 'Please try again later',
         })
     }

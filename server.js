@@ -1,5 +1,4 @@
 const express = require('express');
-const path = require('path');
 const app = express();
 const cors = require('cors');
 const cookieParser = require('cookie-parser');
@@ -13,9 +12,6 @@ const AllProductsRoutes = require('./routes/AllProducts');
 const paymentRoutes = require('./routes/payment');
 const searchRoutes = require('./routes/search');
 const contactRoutes = require('./routes/contact');
-const https = require('https');
-const fs = require('fs');
-
 const paymentController = require('./controllers/payment');
 
 app.use(bodyParser.urlencoded({
@@ -23,14 +19,14 @@ app.use(bodyParser.urlencoded({
 })
 );
 
-// app.use(cors({
-//     origin: [
-//         `https://pizzards.netlify.app`,
-//         // `http://localhost:3000`,
-//     ],
-//     credentials: true
-// })
-// );
+app.use(cors({
+    origin: [
+        `https://pizzards.netlify.app`,
+        // `http://localhost:3000`,
+    ],
+    credentials: true
+})
+);
 
 app.use(cors());
 app.use(express.json());
