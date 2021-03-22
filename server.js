@@ -21,7 +21,6 @@ app.use(bodyParser.urlencoded({
 
 app.use(cors({
     origin: [
-        `https://pizzards.netlify.app`,
         // `http://localhost:3000`,
     ],
     credentials: true
